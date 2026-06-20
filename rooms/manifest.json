@@ -1,0 +1,766 @@
+{
+  "living": {
+    "base": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+    "size": {
+      "w": 3840,
+      "h": 2160
+    },
+    "renderPresetSize": {
+      "w": 3840,
+      "h": 2160
+    },
+    "defaultRenderPreset": "flat_no-light_nearest_floor-gujung-a",
+    "focusRenderPresets": {
+      "ceiling": {
+        "defaultRenderPreset": "ceiling_flat_no-light_floor-gujung-a",
+        "renderPresets": [
+          {
+            "key": "ceiling_flat_no-light_floor-gujung-a",
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+            "match": {
+              "ceiling": "flat",
+              "floor": {
+                "product": [
+                  "p_floor_lam_value",
+                  "p_floor_oak_natural"
+                ]
+              }
+            }
+          },
+          {
+            "key": "ceiling_dropped_no-light_floor-gujung-a",
+            "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png",
+            "match": {
+              "ceiling": "dropped",
+              "floor": {
+                "product": [
+                  "p_floor_lam_value",
+                  "p_floor_oak_natural"
+                ]
+              }
+            }
+          },
+          {
+            "key": "ceiling_coffered_no-light_floor-gujung-a",
+            "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png",
+            "match": {
+              "ceiling": "coffered",
+              "floor": {
+                "product": [
+                  "p_floor_lam_value",
+                  "p_floor_oak_natural"
+                ]
+              }
+            }
+          },
+          {
+            "key": "ceiling_flat_no-light_floor-dongwha-b",
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_floor-dongwha-b.png",
+            "match": {
+              "ceiling": "flat",
+              "floor": {
+                "product": [
+                  "p_floor_oak_grey",
+                  "p_floor_dongwha_natural"
+                ]
+              }
+            },
+            "pending": [
+              {
+                "item": "renderPreset",
+                "label": "미리보기",
+                "choiceLabel": "선택 조합 렌더 준비 중"
+              }
+            ]
+          }
+        ]
+      },
+      "door": {
+        "defaultRenderPreset": "door_basic_no-light_floor-gujung-a",
+        "renderPresets": [
+          {
+            "key": "door_basic_no-light_floor-gujung-a",
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+            "match": {
+              "door": "casing_basic",
+              "floor": {
+                "product": [
+                  "p_floor_lam_value",
+                  "p_floor_oak_natural"
+                ]
+              }
+            }
+          },
+          {
+            "key": "door_inbang_no-light_floor-gujung-a",
+            "src": "rooms/living/presets/render_door_inbang_no-light_source-user_floor-gujung-a.png",
+            "match": {
+              "door": "casing_full",
+              "floor": {
+                "product": [
+                  "p_floor_lam_value",
+                  "p_floor_oak_natural"
+                ]
+              }
+            }
+          },
+          {
+            "key": "door_slim_no-light_floor-gujung-a",
+            "src": "rooms/living/presets/render_door_slim_no-light_source-user_floor-gujung-a.png",
+            "match": {
+              "door": "slim",
+              "floor": {
+                "product": [
+                  "p_floor_lam_value",
+                  "p_floor_oak_natural"
+                ]
+              }
+            }
+          },
+          {
+            "key": "door_step_no-light_floor-gujung-a",
+            "src": "rooms/living/presets/render_door_step_no-light_source-user_floor-gujung-a.png",
+            "match": {
+              "door": "step",
+              "floor": {
+                "product": [
+                  "p_floor_lam_value",
+                  "p_floor_oak_natural"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "renderPresets": [
+      {
+        "key": "flat_down_basic_floor-gujung-a",
+        "src": "rooms/living/presets/render_flat_downlight_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "flat",
+          "lighting": "downlight",
+          "door": "casing_basic",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "flat_main_inbang_floor-gujung-a",
+        "src": "rooms/living/presets/render_flat_main-led_inbang-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "flat",
+          "lighting": "main",
+          "door": "casing_full",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "flat_magnetic_basic_floor-gujung-a",
+        "src": "rooms/living/presets/render_flat_magnetic_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "flat",
+          "lighting": "line",
+          "door": "casing_basic",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_down_basic_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_downlight_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "downlight",
+          "door": "casing_basic",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_down_slim_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_downlight_slim-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "downlight",
+          "door": "slim",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_main_inbang_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_main-led_inbang-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "main",
+          "door": "casing_full",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_main_slim_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_main-led_slim-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "main",
+          "door": "slim",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_fan_basic_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_downlight-fan_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "downlight_fan",
+          "door": "casing_basic",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_fan_slim_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_downlight-fan_slim-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "downlight_fan",
+          "door": "slim",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_fan_step_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_downlight-fan_step-door_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "downlight_fan",
+          "door": "step",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "dropped_magnetic_basic_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_magnetic_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "line",
+          "door": "casing_basic",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "coffered_down_basic_floor-gujung-a",
+        "src": "rooms/living/presets/render_coffered_downlight_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "coffered",
+          "lighting": "downlight",
+          "door": "casing_basic",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "coffered_magnetic_basic_floor-gujung-a",
+        "src": "rooms/living/presets/render_coffered_magnetic_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "coffered",
+          "lighting": "line",
+          "door": "casing_basic",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        }
+      },
+      {
+        "key": "flat_no-light_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+        "match": {
+          "ceiling": "flat",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "dropped_no-light_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "coffered_no-light_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png",
+        "match": {
+          "ceiling": "coffered",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "flat_down_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_flat_downlight_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "flat",
+          "lighting": "downlight",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "flat_magnetic_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_flat_magnetic_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "flat",
+          "lighting": "line",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "dropped_down_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_downlight_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "downlight",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "dropped_main_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_main-led_inbang-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "main",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "dropped_fan_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_downlight-fan_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "downlight_fan",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "dropped_magnetic_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_dropped_magnetic_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "dropped",
+          "lighting": "line",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "coffered_down_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_coffered_downlight_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "coffered",
+          "lighting": "downlight",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "coffered_magnetic_nearest_floor-gujung-a",
+        "src": "rooms/living/presets/render_coffered_magnetic_basic-casing_floor-gujung-a.png",
+        "match": {
+          "ceiling": "coffered",
+          "lighting": "line",
+          "floor": {
+            "product": [
+              "p_floor_lam_value",
+              "p_floor_oak_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      },
+      {
+        "key": "flat_no-light_nearest_floor-dongwha-b",
+        "src": "rooms/living/presets/render_ceiling_flat_no-light_floor-dongwha-b.png",
+        "match": {
+          "ceiling": "flat",
+          "floor": {
+            "product": [
+              "p_floor_oak_grey",
+              "p_floor_dongwha_natural"
+            ]
+          }
+        },
+        "pending": [
+          {
+            "item": "renderPreset",
+            "label": "미리보기",
+            "choiceLabel": "선택 조합 렌더 준비 중"
+          }
+        ]
+      }
+    ],
+    "layers": [
+      {
+        "item": "floor",
+        "by": "product",
+        "z": 10,
+        "zone": "rooms/living/zones/floor-room-20260620.png",
+        "assets": {
+          "p_floor_lam_value": {
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png"
+          },
+          "p_floor_dongwha_natural": {
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_floor-dongwha-b.png"
+          },
+          "p_floor_lx_royal_walnut": {
+            "src": "rooms/living/floor/royal-walnut-floorfill-v3.png"
+          },
+          "p_floor_lx_golden_teak": {
+            "src": "rooms/living/floor/golden-teak-floorfill-v4.png"
+          }
+        }
+      },
+      {
+        "item": "wall",
+        "by": "product",
+        "z": 20,
+        "zone": "rooms/living/zones/wall-door-restore-gradient-20260620.png",
+        "assets": {
+          "p_wall_hapji_white": {
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/wall-door-restore-gradient-20260620.png",
+            "variants": {
+              "door": {
+                "step": {
+                  "zone": "rooms/living/zones/wall-door-restore-gradient-step-20260620.png"
+                }
+              }
+            }
+          },
+          "p_wall_silk_warmgrey": {
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/wall-door-restore-gradient-20260620.png",
+            "variants": {
+              "door": {
+                "step": {
+                  "zone": "rooms/living/zones/wall-door-restore-gradient-step-20260620.png"
+                }
+              }
+            }
+          },
+          "p_wall_diamang_creamwhite": {
+            "src": "rooms/living/wall/diamang-creamwhite.jpg",
+            "zone": "rooms/living/zones/wall-room-test-20260620.png",
+            "backgroundRepeat": "repeat",
+            "backgroundSize": "220px 220px",
+            "backgroundPosition": "center",
+            "opacity": 0.28,
+            "mixBlendMode": "multiply"
+          }
+        }
+      },
+      {
+        "item": "ceiling",
+        "by": "option",
+        "z": 30,
+        "zone": "rooms/living/zones/ceiling-flat-20260620.png",
+        "assets": {
+          "flat": {
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/ceiling-flat-20260620.png"
+          },
+          "dropped": {
+            "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/ceiling-dropped-20260620.png"
+          },
+          "coffered": {
+            "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/ceiling-coffered-20260620.png"
+          }
+        }
+      },
+      {
+        "item": "tv_wall",
+        "by": "option",
+        "z": 40,
+        "zone": "rooms/living/zones/tv_wall.png",
+        "assets": {}
+      },
+      {
+        "item": "door",
+        "by": "option",
+        "z": 5,
+        "zone": "rooms/living/zones/door-replace-20260620.png",
+        "assets": {
+          "casing_basic": {
+            "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/door-replace-20260620.png",
+            "variants": {
+              "ceiling": {
+                "coffered": {
+                  "src": "rooms/living/presets/render_door_coffered_basic_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                },
+                "dropped": {
+                  "src": "rooms/living/presets/render_door_dropped_basic_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                }
+              }
+            }
+          },
+          "casing_full": {
+            "src": "rooms/living/presets/render_door_inbang_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/door-replace-20260620.png",
+            "variants": {
+              "ceiling": {
+                "coffered": {
+                  "src": "rooms/living/presets/render_door_coffered_inbang_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                },
+                "dropped": {
+                  "src": "rooms/living/presets/render_door_dropped_inbang_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                }
+              }
+            }
+          },
+          "slim": {
+            "src": "rooms/living/presets/render_door_slim_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/door-replace-20260620.png",
+            "variants": {
+              "ceiling": {
+                "coffered": {
+                  "src": "rooms/living/presets/render_door_coffered_slim_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                },
+                "dropped": {
+                  "src": "rooms/living/presets/render_door_dropped_slim_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                }
+              }
+            }
+          },
+          "step": {
+            "src": "rooms/living/presets/render_door_step_no-light_source-user_floor-gujung-a.png",
+            "zone": "rooms/living/zones/door-replace-20260620.png",
+            "variants": {
+              "ceiling": {
+                "coffered": {
+                  "src": "rooms/living/presets/render_door_coffered_step_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                },
+                "dropped": {
+                  "src": "rooms/living/presets/render_door_dropped_step_no-light_source-user_floor-gujung-a.png",
+                  "zone": "rooms/living/zones/door-render-area-20260620.png"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "item": "sash",
+        "by": "condition",
+        "conditionKey": "frameColor",
+        "z": 60,
+        "kind": "tint",
+        "zone": "rooms/living/zones/sash.png",
+        "tints": {
+          "white": "#f3f4f6",
+          "gray": "#9aa3ad",
+          "black": "#2b2f36",
+          "wood": "#b08552"
+        }
+      },
+      {
+        "item": "lighting",
+        "by": "option",
+        "z": 90,
+        "kind": "globalTone",
+        "colorTempTint": {
+          "warm": "#ffd9a0",
+          "neutral": "#ffffff"
+        }
+      }
+    ]
+  }
+}

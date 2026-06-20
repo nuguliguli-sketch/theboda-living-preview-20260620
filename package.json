@@ -1,0 +1,13 @@
+{
+  "name": "theboda-operator-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "더보다 플랫폼 운영 백오피스(정적)",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "serve": "python -m http.server 5500"
+  },
+  "devDependencies": { "vitest": "^2.1.0" }
+}

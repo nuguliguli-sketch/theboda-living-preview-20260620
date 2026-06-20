@@ -1,0 +1,669 @@
+{
+  "catalogVersion": "2026-06-07-living",
+  "spaces": [
+    {
+      "code": "living",
+      "name": "거실",
+      "items": [
+        {
+          "category": "floor",
+          "name": "바닥",
+          "quantityDriver": "floor_area",
+          "options": [
+            {
+              "code": "laminate_value",
+              "group": "강마루",
+              "grade": "실속",
+              "name": "강마루 실속",
+              "pricingStatus": "known",
+              "priceLabel": "90,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_lam_value",
+                  "name": "강마루 실속 기본",
+                  "image": null,
+                  "swatch": "#CDB892",
+                  "enabled": true
+                }
+              ],
+              "enabled": true
+            },
+            {
+              "code": "laminate_std",
+              "group": "강마루",
+              "grade": "일반",
+              "name": "강마루 일반",
+              "pricingStatus": "known",
+              "priceLabel": "105,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_oak_natural",
+                  "name": "내추럴 오크",
+                  "brand": "LX지인",
+                  "code": "에디톤 A그룹",
+                  "size": "1200x190",
+                  "image": null,
+                  "swatch": "#C8AD7F",
+                  "enabled": false
+                },
+                {
+                  "id": "p_floor_oak_grey",
+                  "name": "그레이 오크",
+                  "brand": "LX지인",
+                  "code": "에디톤 B그룹",
+                  "size": "1200x190",
+                  "image": null,
+                  "swatch": "#9E9385",
+                  "enabled": false
+                },
+                {
+                  "id": "p_floor_dongwha_natural",
+                  "name": "동화 자연마루",
+                  "brand": "동화",
+                  "code": "강마루 B",
+                  "size": "미정",
+                  "image": "rooms/living/floor/dongwha-sample.jpg",
+                  "swatch": "#C3A982",
+                  "enabled": true
+                }
+              ],
+              "enabled": true
+            },
+            {
+              "code": "laminate_premium",
+              "group": "강마루",
+              "grade": "고급",
+              "name": "강마루 고급",
+              "pricingStatus": "known",
+              "priceLabel": "120,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_lx_royal_walnut",
+                  "name": "LX 강마루 프리미엄 로얄 월넛",
+                  "brand": "LX",
+                  "code": "로얄 월넛",
+                  "size": "샘플 기준",
+                  "image": "rooms/living/floor/royal-walnut.jpg",
+                  "swatch": "#6f543d",
+                  "enabled": true
+                },
+                {
+                  "id": "p_floor_lx_golden_teak",
+                  "name": "LX 강마루 프리미엄 골든 티크",
+                  "brand": "LX",
+                  "code": "FMKGP002 / 골든 티크",
+                  "size": "샘플 기준",
+                  "image": "rooms/living/floor/golden-teak.jpg",
+                  "swatch": "#b77d4b",
+                  "enabled": true
+                },
+                {
+                  "id": "p_floor_lam_prem",
+                  "name": "강마루 고급 기본",
+                  "image": null,
+                  "swatch": "#B89B6E",
+                  "enabled": false
+                }
+              ],
+              "enabled": true
+            },
+            {
+              "code": "sheet_value",
+              "group": "장판",
+              "grade": "실속",
+              "name": "장판 실속",
+              "pricingStatus": "known",
+              "priceLabel": "40,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_sheet_value",
+                  "name": "장판 실속",
+                  "image": null,
+                  "swatch": "#D8C9AE",
+                  "enabled": false
+                }
+              ],
+              "enabled": false
+            },
+            {
+              "code": "sheet_std",
+              "group": "장판",
+              "grade": "일반",
+              "name": "장판 일반",
+              "pricingStatus": "known",
+              "priceLabel": "65,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_sheet_std",
+                  "name": "장판 일반",
+                  "image": null,
+                  "swatch": "#CFC0A6",
+                  "enabled": false
+                }
+              ],
+              "enabled": false
+            },
+            {
+              "code": "sheet_premium",
+              "group": "장판",
+              "grade": "고급",
+              "name": "장판 고급",
+              "pricingStatus": "known",
+              "priceLabel": "94,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_sheet_prem",
+                  "name": "장판 고급",
+                  "image": null,
+                  "swatch": "#C6B79D",
+                  "enabled": false
+                }
+              ],
+              "enabled": false
+            },
+            {
+              "code": "wood_std",
+              "group": "원목·SPC",
+              "grade": "원목 일반",
+              "name": "원목마루 일반",
+              "pricingStatus": "known",
+              "priceLabel": "150,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_wood_std",
+                  "name": "원목 일반",
+                  "image": null,
+                  "swatch": "#B89B6E",
+                  "enabled": false
+                }
+              ],
+              "enabled": false
+            },
+            {
+              "code": "wood_premium",
+              "group": "원목·SPC",
+              "grade": "원목 고급",
+              "name": "원목마루 고급",
+              "pricingStatus": "known",
+              "priceLabel": "200,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_wood_prem",
+                  "name": "원목 고급",
+                  "image": null,
+                  "swatch": "#A8845A",
+                  "enabled": false
+                }
+              ],
+              "enabled": false
+            },
+            {
+              "code": "spc",
+              "group": "원목·SPC",
+              "grade": "SPC",
+              "name": "SPC마루",
+              "pricingStatus": "known",
+              "priceLabel": "110,000원/평",
+              "products": [
+                {
+                  "id": "p_floor_spc",
+                  "name": "SPC마루",
+                  "image": null,
+                  "swatch": "#B0A696",
+                  "enabled": false
+                }
+              ],
+              "enabled": false
+            }
+          ],
+          "lineConditions": {}
+        },
+        {
+          "category": "wall",
+          "name": "벽지",
+          "quantityDriver": "wall_area",
+          "options": [
+            {
+              "code": "hapji",
+              "group": "도배",
+              "grade": "합지",
+              "name": "합지",
+              "pricingStatus": "known",
+              "priceLabel": "16,000원/롤",
+              "products": [
+                {
+                  "id": "p_wall_hapji_white",
+                  "name": "톤다운 화이트(합지)",
+                  "image": null,
+                  "swatch": "#F2EFE9"
+                }
+              ]
+            },
+            {
+              "code": "silk",
+              "group": "도배",
+              "grade": "실크",
+              "name": "실크(디아망)",
+              "pricingStatus": "known",
+              "priceLabel": "55,000원/롤",
+              "products": [
+                {
+                  "id": "p_wall_diamang_creamwhite",
+                  "name": "디아망 크림화이트",
+                  "brand": "LX Z:IN",
+                  "code": "DIAMANG-CREAM-WHITE",
+                  "image": "rooms/living/wall/diamang-creamwhite.jpg",
+                  "swatch": "#f4efe5"
+                },
+                {
+                  "id": "p_wall_silk_warmgrey",
+                  "name": "웜 그레이(실크)",
+                  "image": null,
+                  "swatch": "#CFC7BC"
+                }
+              ]
+            }
+          ],
+          "lineConditions": {}
+        },
+        {
+          "category": "ceiling",
+          "name": "천장",
+          "quantityDriver": "ceiling_area",
+          "options": [
+            {
+              "code": "flat",
+              "group": "천장",
+              "grade": "평천장",
+              "name": "평천장",
+              "pricingStatus": "zero",
+              "priceLabel": "추가 비용 없음",
+              "products": []
+            },
+            {
+              "code": "dropped",
+              "group": "천장",
+              "grade": "단내림",
+              "name": "단내림",
+              "pricingStatus": "known",
+              "priceLabel": "기본 단가 적용",
+              "products": []
+            },
+            {
+              "code": "coffered",
+              "group": "천장",
+              "grade": "우물천장",
+              "name": "우물천장",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            }
+          ],
+          "lineConditions": {
+            "demolition": {
+              "class": "costCondition",
+              "default": "keep",
+              "values": [
+                "keep",
+                "partial",
+                "rebuild"
+              ]
+            }
+          }
+        },
+        {
+          "category": "door",
+          "name": "문",
+          "quantityDriver": "door_count",
+          "options": [
+            {
+              "code": "casing_basic",
+              "group": "문선",
+              "grade": "ㄷ자 기본",
+              "name": "ㄷ자 기본 문선(일반도어)",
+              "pricingStatus": "known",
+              "priceLabel": "기본 단가 적용",
+              "products": [
+                {
+                  "id": "d_white_matt",
+                  "name": "화이트(무광)",
+                  "색": "화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#ECECEC"
+                },
+                {
+                  "id": "d_warmwhite",
+                  "name": "웜 화이트",
+                  "색": "웜화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#F0EBE3"
+                },
+                {
+                  "id": "d_oak",
+                  "name": "워시 오크(우드)",
+                  "색": "우드",
+                  "마감": "우드그레인",
+                  "image": null,
+                  "swatch": "#C2A982"
+                }
+              ]
+            },
+            {
+              "code": "casing_full",
+              "group": "문선",
+              "grade": "인방",
+              "name": "인방 문선(풀하이트)",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": [
+                {
+                  "id": "d_white_matt",
+                  "name": "화이트(무광)",
+                  "색": "화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#ECECEC"
+                },
+                {
+                  "id": "d_warmwhite",
+                  "name": "웜 화이트",
+                  "색": "웜화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#F0EBE3"
+                },
+                {
+                  "id": "d_oak",
+                  "name": "워시 오크(우드)",
+                  "색": "우드",
+                  "마감": "우드그레인",
+                  "image": null,
+                  "swatch": "#C2A982"
+                }
+              ]
+            },
+            {
+              "code": "slim",
+              "group": "슬림",
+              "grade": "슬림",
+              "name": "슬림도어(9~12mm)",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": [
+                {
+                  "id": "d_white_matt",
+                  "name": "화이트(무광)",
+                  "색": "화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#ECECEC"
+                },
+                {
+                  "id": "d_warmwhite",
+                  "name": "웜 화이트",
+                  "색": "웜화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#F0EBE3"
+                },
+                {
+                  "id": "d_oak",
+                  "name": "워시 오크(우드)",
+                  "색": "우드",
+                  "마감": "우드그레인",
+                  "image": null,
+                  "swatch": "#C2A982"
+                }
+              ]
+            },
+            {
+              "code": "step",
+              "group": "스텝",
+              "grade": "스텝",
+              "name": "스텝도어",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": [
+                {
+                  "id": "d_white_matt",
+                  "name": "화이트(무광)",
+                  "색": "화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#ECECEC"
+                },
+                {
+                  "id": "d_warmwhite",
+                  "name": "웜 화이트",
+                  "색": "웜화이트",
+                  "마감": "무광",
+                  "image": null,
+                  "swatch": "#F0EBE3"
+                },
+                {
+                  "id": "d_oak",
+                  "name": "워시 오크(우드)",
+                  "색": "우드",
+                  "마감": "우드그레인",
+                  "image": null,
+                  "swatch": "#C2A982"
+                }
+              ]
+            }
+          ],
+          "lineConditions": {}
+        },
+        {
+          "category": "sash",
+          "name": "샷시(창호)",
+          "quantityDriver": "window_area",
+          "options": [
+            {
+              "code": "alu",
+              "group": "샷시",
+              "grade": "알루미늄",
+              "name": "알루미늄 샷시",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            },
+            {
+              "code": "hi_single",
+              "group": "샷시",
+              "grade": "하이단창",
+              "name": "하이샷시 단창",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            },
+            {
+              "code": "hi_double",
+              "group": "샷시",
+              "grade": "하이이중창",
+              "name": "하이샷시 이중창(표준)",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            },
+            {
+              "code": "system",
+              "group": "샷시",
+              "grade": "시스템창호",
+              "name": "시스템창호(고급)",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            }
+          ],
+          "lineConditions": {
+            "frameColor": {
+              "class": "designOnly",
+              "default": "white",
+              "values": [
+                "white",
+                "gray",
+                "black",
+                "wood"
+              ]
+            },
+            "division": {
+              "class": "designOnly",
+              "default": "full",
+              "values": [
+                "full",
+                "divided"
+              ]
+            },
+            "glass": {
+              "class": "costCondition",
+              "default": "pair",
+              "values": [
+                "pair",
+                "lowe",
+                "triple"
+              ]
+            }
+          }
+        },
+        {
+          "category": "tv_wall",
+          "name": "TV벽(아트월)",
+          "quantityDriver": "unit",
+          "options": [
+            {
+              "code": "none",
+              "group": "TV벽",
+              "grade": "일반",
+              "name": "일반(시공 안 함)",
+              "pricingStatus": "zero",
+              "priceLabel": "추가 비용 없음",
+              "products": []
+            },
+            {
+              "code": "semi",
+              "group": "TV벽",
+              "grade": "반매립",
+              "name": "반매립(브라켓·배선 매립)",
+              "pricingStatus": "known",
+              "priceLabel": "기본 단가 적용",
+              "products": []
+            },
+            {
+              "code": "full",
+              "group": "TV벽",
+              "grade": "매립",
+              "name": "매립(완전 매립)",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            }
+          ],
+          "lineConditions": {
+            "tvWidth": {
+              "class": "quantity",
+              "default": null,
+              "type": "number",
+              "appliesTo": [
+                "full"
+              ]
+            },
+            "tvHeight": {
+              "class": "quantity",
+              "default": null,
+              "type": "number",
+              "appliesTo": [
+                "full"
+              ]
+            },
+            "tvDepth": {
+              "class": "quantity",
+              "default": null,
+              "type": "number",
+              "appliesTo": [
+                "full"
+              ]
+            }
+          }
+        },
+        {
+          "category": "lighting",
+          "name": "조명",
+          "quantityDriver": "ceiling_area",
+          "options": [
+            {
+              "code": "main",
+              "group": "조명",
+              "grade": "기본 메인등",
+              "name": "기본 메인등형",
+              "pricingStatus": "known",
+              "priceLabel": "기본 단가 적용",
+              "products": []
+            },
+            {
+              "code": "downlight",
+              "group": "조명",
+              "grade": "다운라이트 중심",
+              "name": "다운라이트 중심형",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            },
+            {
+              "code": "downlight_fan",
+              "group": "조명",
+              "grade": "다운라이트+실링팬",
+              "name": "다운라이트 + 실링팬",
+              "visualStatus": "pending",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            },
+            {
+              "code": "line",
+              "group": "조명",
+              "grade": "마그네틱",
+              "name": "마그네틱 조명",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": []
+            }
+          ],
+          "lineConditions": {
+            "colorTemp": {
+              "class": "designOnly",
+              "default": "neutral",
+              "values": [
+                "warm",
+                "neutral"
+              ]
+            },
+            "dimmingRequested": {
+              "class": "designOnly",
+              "default": false,
+              "type": "boolean"
+            },
+            "downlightCount": {
+              "class": "quantity",
+              "default": null,
+              "type": "number",
+              "appliesTo": [
+                "downlight",
+                "downlight_fan"
+              ]
+            },
+            "lineRunCount": {
+              "class": "quantity",
+              "default": null,
+              "type": "number",
+              "appliesTo": [
+                "line"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
