@@ -66,7 +66,7 @@ describe("design-view-helpers", () => {
   });
 
   it("상수 노출", () => {
-    expect(LIVING_ITEM_ORDER).toEqual(["floor", "wall", "ceiling", "door", "sash", "tv_wall", "lighting"]);
+    expect(LIVING_ITEM_ORDER).toEqual(["floor", "wall", "ceiling_paper", "ceiling", "door", "sash", "tv_wall", "lighting"]);
     expect(PRODUCT_CATEGORIES).toEqual(["floor", "wall", "door"]);
   });
 });

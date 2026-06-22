@@ -85,36 +85,12 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
   const doorZoneKey = { casing_basic: "basic", casing_full: "inbang", slim: "slim", step: "step" };
   const wallpaperZone = (ceiling, door) => `rooms/living/zones/wallpaper-${ceiling}-${doorZoneKey[door]}-20260621.png`;
 
-  it("wall focus preview applies the wallpaper to walls+ceiling using the ceiling×door mask", () => {
-    for (const ceiling of ["flat", "dropped", "coffered"]) {
-      for (const door of ["casing_basic", "casing_full", "slim", "step"]) {
-        const plan = buildCompositePlan({
-          catalog,
-          selection: selection({ ceiling, door, floorProduct: "p_floor_lam_value", wallOption: "silk", wallProduct: "p_wall_debug_magenta_grid" }),
-          manifest,
-          space: "living",
-          activeCategory: "wall",
-        });
-        const wallpaper = plan.layers.find((layer) => layer.item === "wall");
-        expect(wallpaper).toMatchObject({
-          item: "wall",
-          src: "rooms/living/wall/debug-wallpaper-magenta-grid.png",
-          z: 35,
-          zone: wallpaperZone(ceiling, door),
-          backgroundRepeat: "repeat",
-          backgroundSize: "180px 180px",
-        });
-        expect(plan.layers.map((layer) => layer.item)).toEqual(["door", "floor", "ceiling", "wall"]);
-      }
-    }
-  });
-
   it("diamang wallpaper resolves the correct ceiling×door mask in all 12 combinations", () => {
     for (const ceiling of ["flat", "dropped", "coffered"]) {
       for (const door of ["casing_basic", "casing_full", "slim", "step"]) {
         const plan = buildCompositePlan({
           catalog,
-          selection: selection({ ceiling, door, floorProduct: "p_floor_lam_value", wallOption: "silk", wallProduct: "p_wall_diamang_creamwhite" }),
+          selection: selection({ ceiling, door, floorProduct: "p_floor_lam_value", wallOption: "premium", wallProduct: "p_wall_diamang_creamwhite" }),
           manifest,
           space: "living",
           activeCategory: "wall",
@@ -129,6 +105,45 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
         });
       }
     }
+  });
+
+  it("프리미엄 디아망 회벽베이지는 12조합 마스크로 벽+천장을 칠한다", () => {
+    for (const ceiling of ["flat", "dropped", "coffered"]) {
+      for (const door of ["casing_basic", "casing_full", "slim", "step"]) {
+        const plan = buildCompositePlan({
+          catalog,
+          selection: selection({ ceiling, door, floorProduct: "p_floor_lam_value", wallOption: "premium", wallProduct: "p_wall_diamang_hoebyeok_beige" }),
+          manifest, space: "living", activeCategory: "wall",
+        });
+        const wall = plan.layers.find((l) => l.item === "wall");
+        expect(wall).toMatchObject({ src: "rooms/living/wall/diamang-hoebyeok-beige-seamless.png", z: 35, zone: wallpaperZone(ceiling, door), mixBlendMode: "multiply" });
+      }
+    }
+  });
+
+  it("실크 단색(피콕그린)은 walls-only 마스크 + backgroundColor로 벽만 칠한다", () => {
+    for (const door of ["casing_basic", "step"]) {
+      const plan = buildCompositePlan({
+        catalog,
+        selection: selection({ ceiling: "coffered", door, floorProduct: "p_floor_lam_value", wallOption: "silk", wallProduct: "p_wall_silk_peacock" }),
+        manifest, space: "living", activeCategory: "wall",
+      });
+      const wall = plan.layers.find((l) => l.item === "wall");
+      // 실크=벽만(walls-only=벽지마스크−천장). 천장×문별 마스크. 단색은 backgroundColor.
+      const expectedZone = `rooms/living/zones/walls-only-coffered-${door === "step" ? "step" : "basic"}-20260622.png`;
+      expect(wall).toMatchObject({ backgroundColor: "#859185", z: 35, zone: expectedZone, mixBlendMode: "multiply" });
+      expect(wall.src).toBeFalsy();
+    }
+  });
+
+  it("실크 텍스처(샌드)는 walls-only 마스크 텍스처로 벽만 칠한다", () => {
+    const plan = buildCompositePlan({
+      catalog,
+      selection: selection({ ceiling: "flat", door: "casing_basic", floorProduct: "p_floor_lam_value", wallOption: "silk", wallProduct: "p_wall_silk_sand" }),
+      manifest, space: "living", activeCategory: "wall",
+    });
+    const wall = plan.layers.find((l) => l.item === "wall");
+    expect(wall).toMatchObject({ src: "rooms/living/wall/silk-sand-seamless.png", zone: "rooms/living/zones/walls-only-flat-basic-20260622.png", mixBlendMode: "multiply" });
   });
 
   it("hapji/silk(벽 재도색)는 우물/단내림서 같은 천장 렌더를 써 소핏 라인을 없앤다", () => {

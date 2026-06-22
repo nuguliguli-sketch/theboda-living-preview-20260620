@@ -1,7 +1,8 @@
 // operator-web/js/design-view-helpers.js
 // 순수 파생 헬퍼(DOM 없음, node 테스트 가능). 카탈로그 DTO + selection → 화면 데이터.
 
-export const LIVING_ITEM_ORDER = ["floor", "wall", "ceiling", "door", "sash", "tv_wall", "lighting"];
+export const LIVING_ITEM_ORDER = ["floor", "wall", "ceiling_paper", "ceiling", "door", "sash", "tv_wall", "lighting"];
+export const LIVING_VISUAL_ITEMS = ["floor", "wall", "ceiling", "door", "sash", "tv_wall", "lighting"]; // manifest 레이어 필수 항목(천정지 제외)
 export const PRODUCT_CATEGORIES = ["floor", "wall", "door"]; // 제품 카드가 있는 항목
 
 export const CONDITION_LABELS = {
@@ -72,9 +73,20 @@ export function summarizeConditions(conditions) {
   return parts.join(" · ");
 }
 
+export function wallIsPremium(catalog, selection) {
+  const line = lineOf(selection, "living", "wall");
+  return line?.optionCode === "premium";
+}
+
+export function visibleItemOrder(catalog, selection) {
+  return wallIsPremium(catalog, selection)
+    ? LIVING_ITEM_ORDER.filter((c) => c !== "ceiling_paper")
+    : LIVING_ITEM_ORDER;
+}
+
 export function summaryRows(catalog, selection) {
   const rows = [];
-  for (const category of LIVING_ITEM_ORDER) {
+  for (const category of visibleItemOrder(catalog, selection)) {
     const line = lineOf(selection, "living", category);
     if (!line) continue;
     const item = itemOf(catalog, "living", category);

@@ -1,6 +1,6 @@
 // operator-web/js/mock-api.js
 // 백엔드 없는 브라우저 미리보기. 실 api.js와 같은 design 메서드 표면. 규칙은 단순화(시각 확인용).
-const LIVING_ORDER = ["floor", "wall", "ceiling", "door", "sash", "tv_wall", "lighting"];
+const LIVING_ORDER = ["floor", "wall", "ceiling_paper", "ceiling", "door", "sash", "tv_wall", "lighting"];
 
 function appliesTo(spec, optionCode) { return !spec.appliesTo || spec.appliesTo.includes(optionCode); }
 function defaultConditions(item, optionCode) {

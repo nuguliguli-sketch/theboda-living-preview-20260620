@@ -68,8 +68,8 @@
             "pending": [
               {
                 "item": "renderPreset",
-            "label": "preview",
-            "choiceLabel": "render preset pending"
+                "label": "preview",
+                "choiceLabel": "render preset pending"
               }
             ]
           }
@@ -610,8 +610,12 @@
             "zone": "rooms/living/zones/wall-door-restore-gradient-20260620.png",
             "variants": {
               "ceiling": {
-                "coffered": { "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png" },
-                "dropped": { "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png" }
+                "coffered": {
+                  "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png"
+                },
+                "dropped": {
+                  "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png"
+                }
               },
               "door": {
                 "step": {
@@ -625,8 +629,12 @@
             "zone": "rooms/living/zones/wall-door-restore-gradient-20260620.png",
             "variants": {
               "ceiling": {
-                "coffered": { "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png" },
-                "dropped": { "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png" }
+                "coffered": {
+                  "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png"
+                },
+                "dropped": {
+                  "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png"
+                }
               },
               "door": {
                 "step": {
@@ -648,71 +656,746 @@
               "ceiling": {
                 "flat": {
                   "zone": "rooms/living/zones/wallpaper-flat-basic-20260621.png",
-                  "variants": { "door": {
-                    "casing_basic": { "zone": "rooms/living/zones/wallpaper-flat-basic-20260621.png" },
-                    "casing_full": { "zone": "rooms/living/zones/wallpaper-flat-inbang-20260621.png" },
-                    "slim": { "zone": "rooms/living/zones/wallpaper-flat-slim-20260621.png" },
-                    "step": { "zone": "rooms/living/zones/wallpaper-flat-step-20260621.png" }
-                  } }
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/wallpaper-flat-basic-20260621.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/wallpaper-flat-inbang-20260621.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/wallpaper-flat-slim-20260621.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/wallpaper-flat-step-20260621.png"
+                      }
+                    }
+                  }
                 },
                 "dropped": {
                   "zone": "rooms/living/zones/wallpaper-dropped-basic-20260621.png",
-                  "variants": { "door": {
-                    "casing_basic": { "zone": "rooms/living/zones/wallpaper-dropped-basic-20260621.png" },
-                    "casing_full": { "zone": "rooms/living/zones/wallpaper-dropped-inbang-20260621.png" },
-                    "slim": { "zone": "rooms/living/zones/wallpaper-dropped-slim-20260621.png" },
-                    "step": { "zone": "rooms/living/zones/wallpaper-dropped-step-20260621.png" }
-                  } }
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-basic-20260621.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-inbang-20260621.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-slim-20260621.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-step-20260621.png"
+                      }
+                    }
+                  }
                 },
                 "coffered": {
                   "zone": "rooms/living/zones/wallpaper-coffered-basic-20260621.png",
-                  "variants": { "door": {
-                    "casing_basic": { "zone": "rooms/living/zones/wallpaper-coffered-basic-20260621.png" },
-                    "casing_full": { "zone": "rooms/living/zones/wallpaper-coffered-inbang-20260621.png" },
-                    "slim": { "zone": "rooms/living/zones/wallpaper-coffered-slim-20260621.png" },
-                    "step": { "zone": "rooms/living/zones/wallpaper-coffered-step-20260621.png" }
-                  } }
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-basic-20260621.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-inbang-20260621.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-slim-20260621.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-step-20260621.png"
+                      }
+                    }
+                  }
                 }
               }
             }
           },
-          "p_wall_debug_magenta_grid": {
-            "src": "rooms/living/wall/debug-wallpaper-magenta-grid.png",
+          "p_wall_diamang_hoebyeok_beige": {
+            "src": "rooms/living/wall/diamang-hoebyeok-beige-seamless.png",
             "zone": "rooms/living/zones/wallpaper-flat-basic-20260621.png",
             "z": 35,
             "backgroundRepeat": "repeat",
             "backgroundPosition": "center",
-            "backgroundSize": "180px 180px",
-            "opacity": 0.78,
-            "mixBlendMode": "normal",
+            "backgroundSize": "170px 170px",
+            "opacity": 1,
+            "mixBlendMode": "multiply",
             "variants": {
               "ceiling": {
                 "flat": {
                   "zone": "rooms/living/zones/wallpaper-flat-basic-20260621.png",
-                  "variants": { "door": {
-                    "casing_basic": { "zone": "rooms/living/zones/wallpaper-flat-basic-20260621.png" },
-                    "casing_full": { "zone": "rooms/living/zones/wallpaper-flat-inbang-20260621.png" },
-                    "slim": { "zone": "rooms/living/zones/wallpaper-flat-slim-20260621.png" },
-                    "step": { "zone": "rooms/living/zones/wallpaper-flat-step-20260621.png" }
-                  } }
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/wallpaper-flat-basic-20260621.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/wallpaper-flat-inbang-20260621.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/wallpaper-flat-slim-20260621.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/wallpaper-flat-step-20260621.png"
+                      }
+                    }
+                  }
                 },
                 "dropped": {
                   "zone": "rooms/living/zones/wallpaper-dropped-basic-20260621.png",
-                  "variants": { "door": {
-                    "casing_basic": { "zone": "rooms/living/zones/wallpaper-dropped-basic-20260621.png" },
-                    "casing_full": { "zone": "rooms/living/zones/wallpaper-dropped-inbang-20260621.png" },
-                    "slim": { "zone": "rooms/living/zones/wallpaper-dropped-slim-20260621.png" },
-                    "step": { "zone": "rooms/living/zones/wallpaper-dropped-step-20260621.png" }
-                  } }
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-basic-20260621.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-inbang-20260621.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-slim-20260621.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/wallpaper-dropped-step-20260621.png"
+                      }
+                    }
+                  }
                 },
                 "coffered": {
                   "zone": "rooms/living/zones/wallpaper-coffered-basic-20260621.png",
-                  "variants": { "door": {
-                    "casing_basic": { "zone": "rooms/living/zones/wallpaper-coffered-basic-20260621.png" },
-                    "casing_full": { "zone": "rooms/living/zones/wallpaper-coffered-inbang-20260621.png" },
-                    "slim": { "zone": "rooms/living/zones/wallpaper-coffered-slim-20260621.png" },
-                    "step": { "zone": "rooms/living/zones/wallpaper-coffered-step-20260621.png" }
-                  } }
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-basic-20260621.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-inbang-20260621.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-slim-20260621.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/wallpaper-coffered-step-20260621.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_sand": {
+            "src": "rooms/living/wall/silk-sand-seamless.png",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "backgroundRepeat": "repeat",
+            "backgroundPosition": "center",
+            "backgroundSize": "170px 170px",
+            "opacity": 1,
+            "mixBlendMode": "multiply",
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_stonegray": {
+            "backgroundColor": "#F2F0E9",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_dustgray": {
+            "backgroundColor": "#E1E0DB",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_lightgray": {
+            "backgroundColor": "#EBEAE5",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_dawnmist": {
+            "backgroundColor": "#EEECE5",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_sienna": {
+            "backgroundColor": "#ECDBC7",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_naturalwood": {
+            "backgroundColor": "#C6B497",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_realstone": {
+            "backgroundColor": "#D6D0C8",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p_wall_silk_peacock": {
+            "backgroundColor": "#859185",
+            "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+            "z": 35,
+            "mixBlendMode": "multiply",
+            "opacity": 1,
+            "variants": {
+              "ceiling": {
+                "flat": {
+                  "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-flat-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-flat-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-flat-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-flat-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "dropped": {
+                  "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-dropped-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-dropped-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-dropped-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-dropped-step-20260622.png"
+                      }
+                    }
+                  }
+                },
+                "coffered": {
+                  "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png",
+                  "variants": {
+                    "door": {
+                      "casing_basic": {
+                        "zone": "rooms/living/zones/walls-only-coffered-basic-20260622.png"
+                      },
+                      "casing_full": {
+                        "zone": "rooms/living/zones/walls-only-coffered-inbang-20260622.png"
+                      },
+                      "slim": {
+                        "zone": "rooms/living/zones/walls-only-coffered-slim-20260622.png"
+                      },
+                      "step": {
+                        "zone": "rooms/living/zones/walls-only-coffered-step-20260622.png"
+                      }
+                    }
+                  }
                 }
               }
             }

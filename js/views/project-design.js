@@ -1,12 +1,12 @@
 // operator-web/js/views/project-design.js
 // 레이아웃 A: 항목 스텝퍼 + 메인 패널 + 사이드 요약. 상태·액션 오케스트레이션.
 import { el, mount, errorText } from "../ui.js";
-import { LIVING_ITEM_ORDER, itemOf, lineOf, isConfirmed } from "../design-view-helpers.js";
+import { visibleItemOrder, itemOf, lineOf, isConfirmed } from "../design-view-helpers.js";
 import { buildItemPanel } from "./design-item-panel.js";
 import { buildSummary } from "./design-summary.js";
 import { buildRoomVisualizer } from "./room-visualizer.js";
 
-const ENABLED_CATEGORIES = new Set(["floor", "wall", "ceiling", "door"]);
+const ENABLED_CATEGORIES = new Set(["floor", "wall", "ceiling_paper", "ceiling", "door"]);
 
 async function loadManifest() {
   try {
@@ -61,7 +61,7 @@ export async function renderProjectDesign(root, ctx) {
   function stepper() {
     const confirmed = isConfirmed(sel);
     return el("div", { class: "row", style: "flex-wrap:wrap;gap:6px;margin-bottom:12px" },
-      LIVING_ITEM_ORDER.map((cat) => {
+      visibleItemOrder(catalog, sel).map((cat) => {
         const item = itemOf(catalog, "living", cat);
         const enabled = ENABLED_CATEGORIES.has(cat);
         return el("button", {
@@ -74,6 +74,7 @@ export async function renderProjectDesign(root, ctx) {
   }
 
   function drawSelection() {
+    if (!visibleItemOrder(catalog, sel).includes(current)) current = "wall";
     const confirmed = isConfirmed(sel);
     const item = itemOf(catalog, "living", current);
     const line = lineOf(sel, "living", current);

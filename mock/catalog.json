@@ -1,5 +1,5 @@
 {
-  "catalogVersion": "2026-06-07-living",
+  "catalogVersion": "2026-06-22-living-wall",
   "spaces": [
     {
       "code": "living",
@@ -243,9 +243,97 @@
               "code": "silk",
               "group": "도배",
               "grade": "실크",
-              "name": "실크(디아망)",
+              "name": "실크",
               "pricingStatus": "known",
               "priceLabel": "55,000원/롤",
+              "products": [
+                {
+                  "id": "p_wall_silk_warmgrey",
+                  "name": "웜 그레이(실크)",
+                  "image": null,
+                  "swatch": "#CFC7BC"
+                },
+                {
+                  "id": "p_wall_silk_sand",
+                  "name": "실크 베스트 샌드",
+                  "brand": "LX Z:IN",
+                  "code": "BEST-SAND",
+                  "image": "rooms/living/wall/silk-sand.jpg",
+                  "swatch": "#EDE6D8"
+                },
+                {
+                  "id": "p_wall_silk_stonegray",
+                  "name": "스톤 그레이",
+                  "brand": "LX Z:IN",
+                  "code": "82575-03",
+                  "image": null,
+                  "swatch": "#F2F0E9"
+                },
+                {
+                  "id": "p_wall_silk_dustgray",
+                  "name": "더스트 그레이",
+                  "brand": "LX Z:IN",
+                  "code": "82602-05",
+                  "image": null,
+                  "swatch": "#E1E0DB"
+                },
+                {
+                  "id": "p_wall_silk_lightgray",
+                  "name": "라이트 그레이",
+                  "brand": "LX Z:IN",
+                  "code": "82526-02",
+                  "image": null,
+                  "swatch": "#EBEAE5"
+                },
+                {
+                  "id": "p_wall_silk_dawnmist",
+                  "name": "새벽 안개",
+                  "brand": "LX Z:IN",
+                  "code": "82544-01",
+                  "image": null,
+                  "swatch": "#EEECE5"
+                },
+                {
+                  "id": "p_wall_silk_sienna",
+                  "name": "시에나 브라운",
+                  "brand": "LX Z:IN",
+                  "code": "82601-04",
+                  "image": null,
+                  "swatch": "#ECDBC7"
+                },
+                {
+                  "id": "p_wall_silk_naturalwood",
+                  "name": "내추럴 우드",
+                  "brand": "LX Z:IN",
+                  "code": "82609-01",
+                  "image": null,
+                  "swatch": "#C6B497"
+                },
+                {
+                  "id": "p_wall_silk_realstone",
+                  "name": "리얼 스톤",
+                  "brand": "LX Z:IN",
+                  "code": "82607-02",
+                  "image": null,
+                  "swatch": "#D6D0C8"
+                },
+                {
+                  "id": "p_wall_silk_peacock",
+                  "name": "피콕 그린",
+                  "brand": "LX Z:IN",
+                  "code": "82610-05",
+                  "image": null,
+                  "swatch": "#859185"
+                }
+              ]
+            },
+            {
+              "code": "premium",
+              "group": "도배",
+              "grade": "프리미엄",
+              "name": "프리미엄(디아망)",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
               "products": [
                 {
                   "id": "p_wall_diamang_creamwhite",
@@ -256,18 +344,36 @@
                   "swatch": "#f4efe5"
                 },
                 {
-                  "id": "p_wall_debug_magenta_grid",
-                  "name": "[검수] 벽+천장 마스크 확인",
-                  "brand": "QA",
-                  "code": "WALL-CEILING-MASK-DEBUG",
-                  "image": "rooms/living/wall/debug-wallpaper-magenta-grid.png",
-                  "swatch": "#ff00aa"
-                },
+                  "id": "p_wall_diamang_hoebyeok_beige",
+                  "name": "디아망 회벽 베이지",
+                  "brand": "LX Z:IN",
+                  "code": "DIAMANG-HOEBYEOK-BEIGE",
+                  "image": "rooms/living/wall/diamang-hoebyeok-beige.jpg",
+                  "swatch": "#DCD7CD"
+                }
+              ]
+            }
+          ],
+          "lineConditions": {}
+        },
+        {
+          "category": "ceiling_paper",
+          "name": "천정지",
+          "quantityDriver": "ceiling_area",
+          "options": [
+            {
+              "code": "white",
+              "group": "천장도배",
+              "grade": "화이트",
+              "name": "화이트",
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "products": [
                 {
-                  "id": "p_wall_silk_warmgrey",
-                  "name": "웜 그레이(실크)",
+                  "id": "p_ceil_white",
+                  "name": "천정지 화이트",
                   "image": null,
-                  "swatch": "#CFC7BC"
+                  "swatch": "#FAFAFA"
                 }
               ]
             }

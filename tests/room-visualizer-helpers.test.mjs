@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { buildCompositePlan, layerToStyle, checkManifestCatalogSync, resolveRenderPreset } from "../js/room-visualizer-helpers.js";
+import { wallIsPremium, visibleItemOrder, LIVING_ITEM_ORDER } from "../js/design-view-helpers.js";
 
 const catalog = { spaces: [{ code: "living", name: "거실", items: [
   { category: "floor", name: "바닥", options: [
@@ -230,6 +231,23 @@ describe("buildCompositePlan", () => {
     expect(tone).toMatchObject({ kind: "globalTone", color: "#ffd9a0", z: 90 });
     expect(plan.pending).toEqual([]);
   });
+
+  it("buildCompositePlan: backgroundColor만 있는 wall 자산도 레이어로 push", () => {
+    const manifest = { living: { size: { w: 10, h: 10 }, base: "b.png", layers: [
+      { item: "wall", by: "product", z: 20, zone: "z/wall.png", assets: {
+        p_tint: { backgroundColor: "#859185", zone: "z/wall.png", z: 35, mixBlendMode: "multiply", opacity: 1 },
+      } },
+    ] } };
+    const catalog = { spaces: [{ code: "living", items: [{ category: "wall", name: "벽지", options: [
+      { code: "silk", products: [{ id: "p_tint", name: "틴트" }] },
+    ] }] }] };
+    const selection = { status: "draft", lines: [{ space: "living", category: "wall", optionCode: "silk", productId: "p_tint", conditions: {} }] };
+    const plan = buildCompositePlan({ catalog, selection, manifest, space: "living" });
+    const wall = plan.layers.find((l) => l.item === "wall");
+    expect(wall).toMatchObject({ item: "wall", backgroundColor: "#859185", z: 35, mixBlendMode: "multiply" });
+    expect(wall.src).toBeFalsy();
+    expect(plan.pending).toEqual([]);
+  });
 });
 
 describe("layerToStyle", () => {
@@ -249,6 +267,13 @@ describe("layerToStyle", () => {
     const s = layerToStyle({ kind: "globalTone", z: 90, color: "#ffd9a0" });
     expect(s).toContain("background:#ffd9a0");
     expect(s).not.toContain("mask:url");
+  });
+  it("image: src 없이 backgroundColor면 단색으로 칠하고 마스크·blend 적용", () => {
+    const s = layerToStyle({ kind: "image", z: 35, backgroundColor: "#859185", zone: "z/wall.png", mixBlendMode: "multiply", opacity: 1 });
+    expect(s).toContain("background-color:#859185");
+    expect(s).not.toContain("background-image:url");
+    expect(s).toContain("mix-blend-mode:multiply");
+    expect(s).toContain("mask:url(z/wall.png)");
   });
 });
 
@@ -284,5 +309,23 @@ describe("checkManifestCatalogSync", () => {
     ] } };
     const r = checkManifestCatalogSync({ catalog: litCatalog, manifest: m, space: "living", itemOrder: ["lighting"] });
     expect(r.unknownKeys).toEqual([{ item: "lighting", key: "BADTEMP" }]);
+  });
+});
+
+describe("도배 항목 가시성", () => {
+  const cat = { spaces: [{ code: "living", items: [{ category: "wall", options: [
+    { code: "silk", products: [{ id: "p_a" }] }, { code: "premium", products: [{ id: "p_b" }] },
+  ] }] }] };
+  const sel = (opt) => ({ lines: [{ space: "living", category: "wall", optionCode: opt, productId: "p_a", conditions: {} }] });
+  it("LIVING_ITEM_ORDER에 ceiling_paper가 wall 다음에 있다", () => {
+    expect(LIVING_ITEM_ORDER).toEqual(["floor", "wall", "ceiling_paper", "ceiling", "door", "sash", "tv_wall", "lighting"]);
+  });
+  it("wallIsPremium: 벽지 premium 여부", () => {
+    expect(wallIsPremium(cat, sel("premium"))).toBe(true);
+    expect(wallIsPremium(cat, sel("silk"))).toBe(false);
+  });
+  it("visibleItemOrder: premium이면 천정지 숨김", () => {
+    expect(visibleItemOrder(cat, sel("premium"))).not.toContain("ceiling_paper");
+    expect(visibleItemOrder(cat, sel("silk"))).toContain("ceiling_paper");
   });
 });

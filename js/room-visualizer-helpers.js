@@ -1,6 +1,6 @@
 // operator-web/js/room-visualizer-helpers.js
 // 순수 헬퍼: (catalog, selection, manifest) → 합성 계획. DOM 없음, vitest 가능.
-import { LIVING_ITEM_ORDER, itemOf, lineOf, optionOf, productOf } from "./design-view-helpers.js";
+import { LIVING_VISUAL_ITEMS, itemOf, lineOf, optionOf, productOf } from "./design-view-helpers.js";
 
 // 매니페스트 레이어가 보는 선택 키(제품ID / 옵션코드 / 조건값)
 function layerKey(layer, line) {
@@ -147,6 +147,9 @@ export function layerToStyle(layer) {
   const opacity = layer.opacity == null ? "" : `opacity:${layer.opacity};`;
   const blend = layer.mixBlendMode ? `mix-blend-mode:${layer.mixBlendMode};` : "";
   if (layer.kind === "image") {
+    if (!layer.src && layer.backgroundColor) {
+      return `${base}background-color:${layer.backgroundColor};${opacity}${blend}${mask}`;
+    }
     const position = layer.backgroundPosition ?? "center";
     const size = layer.backgroundSize ?? "cover";
     const repeat = layer.backgroundRepeat ?? "no-repeat";
@@ -227,7 +230,8 @@ export function buildCompositePlan({ catalog, selection, manifest, space = "livi
       const configuredAsset = key != null ? (layer.assets ?? {})[key] : null;
       const asset = resolveLayerAsset(configuredAsset, { selection, space });
       const src = typeof asset === "string" ? asset : asset?.src;
-      if (src) layers.push({
+      const fill = asset && typeof asset === "object" ? asset.backgroundColor : null;
+      if (src || fill) layers.push({
         item: layer.item,
         z: layer.z ?? 0,
         kind: "image",
@@ -244,7 +248,7 @@ export function buildCompositePlan({ catalog, selection, manifest, space = "livi
 }
 
 // 매니페스트의 자산 키가 카탈로그에 실제로 존재하는지 교차 검증
-export function checkManifestCatalogSync({ catalog, manifest, space = "living", itemOrder = LIVING_ITEM_ORDER }) {
+export function checkManifestCatalogSync({ catalog, manifest, space = "living", itemOrder = LIVING_VISUAL_ITEMS }) {
   const room = manifest?.[space] ?? { layers: [] };
   const layerItems = new Set((room.layers ?? []).map((l) => l.item));
   const missingItems = itemOrder.filter((c) => !layerItems.has(c));
