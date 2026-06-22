@@ -62,12 +62,16 @@ function conditionControl(ctrl, onSet) {
   }
   // segment
   const seg = el("div", { class: "row", style: "flex-wrap:wrap;gap:6px" },
-    (ctrl.values ?? []).map((v) =>
-      el("button", {
+    (ctrl.values ?? []).map((v) => {
+      const dot = ctrl.swatches?.[v]
+        ? el("span", { style: `display:inline-block;width:12px;height:12px;border-radius:9999px;border:1px solid #00000022;background:${ctrl.swatches[v]};margin-right:6px;vertical-align:middle` })
+        : null;
+      return el("button", {
         class: ctrl.current === v ? "primary" : "ghost",
-        text: CONDITION_VALUE_LABELS[v] ?? v,
+        style: dot ? "display:inline-flex;align-items:center" : null,
         onClick: () => onSet(ctrl.key, v),
-      })));
+      }, [dot, CONDITION_VALUE_LABELS[v] ?? v]);
+    }));
   const tag = ctrl.klass === "designOnly" ? "디자인 전용·가격 불변" : ctrl.klass === "costCondition" ? "가격 영향(현장 확정)" : "견적 수량";
   return el("div", {}, [el("label", { text: `${ctrl.label} (${tag})` }), seg]);
 }

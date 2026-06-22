@@ -3,6 +3,7 @@ import { describe, it, expect } from "vitest";
 import {
   groupsForCategory, conditionControls, summaryRows, summarizeConditions,
   LIVING_ITEM_ORDER, PRODUCT_CATEGORIES,
+  CONDITION_LABELS, CONDITION_VALUE_LABELS,
 } from "../js/design-view-helpers.js";
 
 const floorItem = {
@@ -68,5 +69,23 @@ describe("design-view-helpers", () => {
   it("상수 노출", () => {
     expect(LIVING_ITEM_ORDER).toEqual(["floor", "wall", "ceiling_paper", "ceiling", "door", "sash", "tv_wall", "lighting"]);
     expect(PRODUCT_CATEGORIES).toEqual(["floor", "wall", "door"]);
+  });
+});
+
+describe("doorColor 조건 레이블/스와치", () => {
+  const doorItem = { category: "door", lineConditions: { doorColor: {
+    class: "designOnly", values: ["white", "warmwhite", "wood"],
+    swatches: { white: "#ECECEC", warmwhite: "#F0EBE3", wood: "#C2A982" },
+  } } };
+  it("doorColor 레이블과 값레이블이 한국어", () => {
+    expect(CONDITION_LABELS.doorColor).toBe("문 색");
+    expect(CONDITION_VALUE_LABELS.warmwhite).toBe("웜화이트");
+    expect(CONDITION_VALUE_LABELS.charcoal).toBe("차콜");
+  });
+  it("conditionControls가 swatches를 컨트롤 기술에 통과시킨다", () => {
+    const line = { optionCode: "casing_basic", conditions: { doorColor: "warmwhite" } };
+    const ctrls = conditionControls(doorItem, line);
+    const dc = ctrls.find((c) => c.key === "doorColor");
+    expect(dc).toMatchObject({ kind: "segment", current: "warmwhite", swatches: { white: "#ECECEC", warmwhite: "#F0EBE3", wood: "#C2A982" } });
   });
 });

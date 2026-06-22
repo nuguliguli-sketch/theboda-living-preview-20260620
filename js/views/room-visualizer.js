@@ -3,11 +3,12 @@
 import { el } from "../ui.js";
 import { buildCompositePlan, layerToStyle } from "../room-visualizer-helpers.js";
 
-const VISUAL_ASSET_VERSION = "0622-door-casing-fix-v5";
+const VISUAL_ASSET_VERSION = "0622-door-color-v1";
 const visualAssetUrl = (url) => {
   if (!url?.startsWith("rooms/living/presets/")
     && !url?.startsWith("rooms/living/floor/")
     && !url?.startsWith("rooms/living/wall/")
+    && !url?.startsWith("rooms/living/door/")
     && !url?.startsWith("rooms/living/zones/")) return url;
   return `${url}${url.includes("?") ? "&" : "?"}v=${VISUAL_ASSET_VERSION}`;
 };

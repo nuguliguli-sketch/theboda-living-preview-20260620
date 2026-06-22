@@ -437,32 +437,7 @@
               "name": "ㄷ자 기본 문선(일반도어)",
               "pricingStatus": "known",
               "priceLabel": "기본 단가 적용",
-              "products": [
-                {
-                  "id": "d_white_matt",
-                  "name": "화이트(무광)",
-                  "색": "화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#ECECEC"
-                },
-                {
-                  "id": "d_warmwhite",
-                  "name": "웜 화이트",
-                  "색": "웜화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#F0EBE3"
-                },
-                {
-                  "id": "d_oak",
-                  "name": "워시 오크(우드)",
-                  "색": "우드",
-                  "마감": "우드그레인",
-                  "image": null,
-                  "swatch": "#C2A982"
-                }
-              ]
+              "products": []
             },
             {
               "code": "casing_full",
@@ -471,32 +446,7 @@
               "name": "인방 문선(풀하이트)",
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
-              "products": [
-                {
-                  "id": "d_white_matt",
-                  "name": "화이트(무광)",
-                  "색": "화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#ECECEC"
-                },
-                {
-                  "id": "d_warmwhite",
-                  "name": "웜 화이트",
-                  "색": "웜화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#F0EBE3"
-                },
-                {
-                  "id": "d_oak",
-                  "name": "워시 오크(우드)",
-                  "색": "우드",
-                  "마감": "우드그레인",
-                  "image": null,
-                  "swatch": "#C2A982"
-                }
-              ]
+              "products": []
             },
             {
               "code": "slim",
@@ -505,32 +455,7 @@
               "name": "슬림도어(9~12mm)",
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
-              "products": [
-                {
-                  "id": "d_white_matt",
-                  "name": "화이트(무광)",
-                  "색": "화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#ECECEC"
-                },
-                {
-                  "id": "d_warmwhite",
-                  "name": "웜 화이트",
-                  "색": "웜화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#F0EBE3"
-                },
-                {
-                  "id": "d_oak",
-                  "name": "워시 오크(우드)",
-                  "색": "우드",
-                  "마감": "우드그레인",
-                  "image": null,
-                  "swatch": "#C2A982"
-                }
-              ]
+              "products": []
             },
             {
               "code": "step",
@@ -539,35 +464,24 @@
               "name": "스텝도어",
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
-              "products": [
-                {
-                  "id": "d_white_matt",
-                  "name": "화이트(무광)",
-                  "색": "화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#ECECEC"
-                },
-                {
-                  "id": "d_warmwhite",
-                  "name": "웜 화이트",
-                  "색": "웜화이트",
-                  "마감": "무광",
-                  "image": null,
-                  "swatch": "#F0EBE3"
-                },
-                {
-                  "id": "d_oak",
-                  "name": "워시 오크(우드)",
-                  "색": "우드",
-                  "마감": "우드그레인",
-                  "image": null,
-                  "swatch": "#C2A982"
-                }
-              ]
+              "products": []
             }
           ],
-          "lineConditions": {}
+          "lineConditions": {
+            "doorColor": {
+              "class": "designOnly",
+              "default": "white",
+              "values": ["white", "warmwhite", "gray", "charcoal", "black", "wood"],
+              "swatches": {
+                "white": "#ECECEC",
+                "warmwhite": "#F0EBE3",
+                "gray": "#9AA1A8",
+                "charcoal": "#5B6066",
+                "black": "#33373C",
+                "wood": "#C2A982"
+              }
+            }
+          }
         },
         {
           "category": "sash",

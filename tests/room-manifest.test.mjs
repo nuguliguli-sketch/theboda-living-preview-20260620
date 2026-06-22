@@ -42,7 +42,7 @@ const selection = ({ ceiling = "flat", lighting = "main", door = "casing_basic",
     { space: "living", category: "wall", optionCode: wallOption, productId: wallProduct, conditions: {} },
     { space: "living", category: "ceiling", optionCode: ceiling, productId: null, conditions: {} },
     { space: "living", category: "lighting", optionCode: lighting, productId: null, conditions: {} },
-    { space: "living", category: "door", optionCode: door, productId: "d_white_matt", conditions: {} },
+    { space: "living", category: "door", optionCode: door, productId: "d_white_matt", conditions: { doorColor: "white" } },
   ],
 });
 
@@ -72,6 +72,18 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     expect(door.options.map((option) => option.code)).toEqual(["casing_basic", "casing_full", "slim", "step"]);
     expect(door.options.find((option) => option.code === "slim").visualStatus).toBeUndefined();
     expect(door.options.find((option) => option.code === "step").visualStatus).toBeUndefined();
+  });
+
+  it("문 색은 doorColor 라인조건(designOnly)으로 6색 제공하고, 색 products는 제거됐다", () => {
+    const living = catalog.spaces.find((space) => space.code === "living");
+    const door = living.items.find((item) => item.category === "door");
+    const dc = door.lineConditions?.doorColor;
+    expect(dc).toBeTruthy();
+    expect(dc.class).toBe("designOnly");
+    expect(dc.default).toBe("white");
+    expect(dc.values).toEqual(["white", "warmwhite", "gray", "charcoal", "black", "wood"]);
+    expect(Object.keys(dc.swatches)).toEqual(dc.values);
+    for (const opt of door.options) expect(opt.products).toEqual([]);
   });
 
   it("coffered downlight fan uses nearest render preset", () => {
@@ -181,7 +193,7 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     // 베이스 = 선택한 천장(단내림)의 풀룸 렌더 (혼합 베이스로 인한 천장-벽 경계 톤단차 방지)
     expect(dropped.base).toBe("rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png");
     expect(dropped.preset).toBeUndefined();
-    expect(dropped.layers.map((layer) => layer.item)).toEqual(["door", "floor", "wall", "ceiling"]);
+    expect(dropped.layers.map((layer) => layer.item)).toEqual(["door", "door", "floor", "wall", "ceiling"]);
     expect(dropped.layers.find((l) => l.item === "floor")).toMatchObject({
       item: "floor",
       src: "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
@@ -203,7 +215,7 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     });
     expect(coffered.base).toBe("rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png");
     expect(coffered.preset).toBeUndefined();
-    expect(coffered.layers.map((layer) => layer.item)).toEqual(["door", "floor", "wall", "ceiling"]);
+    expect(coffered.layers.map((layer) => layer.item)).toEqual(["door", "door", "floor", "wall", "ceiling"]);
     expect(coffered.layers.find((l) => l.item === "ceiling")).toMatchObject({
       item: "ceiling",
       src: "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png",
@@ -222,7 +234,7 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     });
     expect(slim.base).toBe("rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png");
     expect(slim.preset).toBeUndefined();
-    expect(slim.layers.map((layer) => layer.item)).toEqual(["door", "floor", "wall", "ceiling"]);
+    expect(slim.layers.map((layer) => layer.item)).toEqual(["door", "door", "floor", "wall", "ceiling"]);
     expect(slim.layers[0]).toMatchObject({
       item: "door",
       src: "rooms/living/presets/render_door_slim_no-light_source-user_floor-gujung-a.png",
@@ -230,7 +242,11 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
       // 좁은 문(슬림)이 다 덮어야 하는데, 좁은 door-replace는 기본문 우측 문선이 남는다.
       zone: "rooms/living/zones/door-render-area-20260620.png",
     });
-    expect(slim.layers[3]).toMatchObject({
+    expect(slim.layers[1]).toMatchObject({
+      item: "door", kind: "tint", color: "#f4f3f1",
+      zone: "rooms/living/zones/door-mask-slim-20260622.png", z: 6,
+    });
+    expect(slim.layers[4]).toMatchObject({
       item: "ceiling",
       src: "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
       zone: "rooms/living/zones/ceiling-flat-20260620.png",
@@ -244,13 +260,13 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
       space: "living",
       activeCategory: "door",
     });
-    expect(step.layers.map((layer) => layer.item)).toEqual(["door", "floor", "wall", "ceiling"]);
+    expect(step.layers.map((layer) => layer.item)).toEqual(["door", "door", "floor", "wall", "ceiling"]);
     expect(step.layers[0]).toMatchObject({
       item: "door",
       src: "rooms/living/presets/render_door_step_no-light_source-user_floor-gujung-a.png",
       zone: "rooms/living/zones/door-render-area-20260620.png",
     });
-    expect(step.layers[2]).toMatchObject({
+    expect(step.layers[3]).toMatchObject({
       item: "wall",
       zone: "rooms/living/zones/wall-door-restore-gradient-step-20260620.png",
     });
@@ -268,13 +284,13 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     expect(slim.preset).toBeUndefined();
     // 베이스 = 선택한 천장(우물)의 풀룸 렌더
     expect(slim.base).toBe("rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png");
-    expect(slim.layers.map((layer) => layer.item)).toEqual(["door", "floor", "wall", "ceiling"]);
+    expect(slim.layers.map((layer) => layer.item)).toEqual(["door", "door", "floor", "wall", "ceiling"]);
     expect(slim.layers[0]).toMatchObject({
       item: "door",
       src: "rooms/living/presets/render_door_coffered_slim_no-light_source-user_floor-gujung-a.png",
       zone: "rooms/living/zones/door-render-area-20260620.png",
     });
-    expect(slim.layers[3]).toMatchObject({
+    expect(slim.layers[4]).toMatchObject({
       item: "ceiling",
       src: "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png",
       zone: "rooms/living/zones/ceiling-coffered-20260620.png",

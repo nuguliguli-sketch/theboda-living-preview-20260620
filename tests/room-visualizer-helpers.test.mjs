@@ -232,6 +232,62 @@ describe("buildCompositePlan", () => {
     expect(plan.pending).toEqual([]);
   });
 
+  it("doorColor 단색 선택 → 문선별 마스크로 틴트", () => {
+    const cat = { spaces: [{ code: "living", items: [
+      { category: "door", name: "문", options: [{ code: "casing_basic", products: [] }, { code: "slim", products: [] }],
+        lineConditions: { doorColor: { values: ["white", "gray", "wood"] } } },
+    ] }] };
+    const man = { living: { layers: [
+      { item: "door", by: "condition", conditionKey: "doorColor", z: 6, kind: "tint",
+        zone: "z/door-basic.png",
+        variants: { door: { slim: { zone: "z/door-slim.png" } } },
+        tints: { white: "#f4f3f1", gray: "#9aa1a8" },
+        textures: { wood: { src: "d/wood.png", backgroundSize: "300px" } } },
+    ] } };
+    const plan = buildCompositePlan({ catalog: cat, manifest: man, space: "living", selection: sel([
+      { space: "living", category: "door", optionCode: "slim", productId: null, conditions: { doorColor: "gray" } },
+    ]) });
+    const dc = plan.layers.find((l) => l.item === "door");
+    expect(dc).toMatchObject({ kind: "tint", color: "#9aa1a8", zone: "z/door-slim.png", z: 6 });
+  });
+
+  it("doorColor 우드 선택 → 텍스처 image 레이어(multiply)", () => {
+    const cat = { spaces: [{ code: "living", items: [
+      { category: "door", name: "문", options: [{ code: "casing_basic", products: [] }],
+        lineConditions: { doorColor: { values: ["white", "wood"] } } },
+    ] }] };
+    const man = { living: { layers: [
+      { item: "door", by: "condition", conditionKey: "doorColor", z: 6, kind: "tint",
+        zone: "z/door-basic.png",
+        tints: { white: "#f4f3f1" },
+        textures: { wood: { src: "d/wood.png", backgroundSize: "300px" } } },
+    ] } };
+    const plan = buildCompositePlan({ catalog: cat, manifest: man, space: "living", selection: sel([
+      { space: "living", category: "door", optionCode: "casing_basic", productId: null, conditions: { doorColor: "wood" } },
+    ]) });
+    const dc = plan.layers.find((l) => l.item === "door");
+    expect(dc).toMatchObject({ kind: "image", src: "d/wood.png", mixBlendMode: "multiply", backgroundSize: "300px", zone: "z/door-basic.png" });
+    expect(dc.opacity).toBeUndefined(); // 우드는 풀강도 multiply(0.9 미적용) — 의도된 차이
+  });
+
+  it("src 없는 텍스처는 깨진 이미지 대신 tint 폴백", () => {
+    const cat = { spaces: [{ code: "living", items: [
+      { category: "door", name: "문", options: [{ code: "casing_basic", products: [] }],
+        lineConditions: { doorColor: { values: ["white", "wood"] } } },
+    ] }] };
+    const man = { living: { layers: [
+      { item: "door", by: "condition", conditionKey: "doorColor", z: 6, kind: "tint",
+        zone: "z/door-basic.png",
+        tints: { wood: "#b08552" },
+        textures: { wood: { backgroundSize: "300px" } } }, // src 누락
+    ] } };
+    const plan = buildCompositePlan({ catalog: cat, manifest: man, space: "living", selection: sel([
+      { space: "living", category: "door", optionCode: "casing_basic", productId: null, conditions: { doorColor: "wood" } },
+    ]) });
+    const dc = plan.layers.find((l) => l.item === "door");
+    expect(dc).toMatchObject({ kind: "tint", color: "#b08552", zone: "z/door-basic.png" });
+  });
+
   it("buildCompositePlan: backgroundColor만 있는 wall 자산도 레이어로 push", () => {
     const manifest = { living: { size: { w: 10, h: 10 }, base: "b.png", layers: [
       { item: "wall", by: "product", z: 20, zone: "z/wall.png", assets: {
@@ -262,6 +318,10 @@ describe("layerToStyle", () => {
     expect(s).toContain("background:#2b2f36");
     expect(s).toContain("mix-blend-mode:multiply");
     expect(s).toContain("mask:url(z/sash.png)");
+  });
+  it("tint: layer.opacity가 있으면 그 값, 없으면 기본 .55", () => {
+    expect(layerToStyle({ kind: "tint", color: "#333", zone: "z.png", opacity: 0.9 })).toContain("opacity:0.9");
+    expect(layerToStyle({ kind: "tint", color: "#333", zone: "z.png" })).toContain("opacity:0.55");
   });
   it("globalTone: 전체 톤(마스크 없음)", () => {
     const s = layerToStyle({ kind: "globalTone", z: 90, color: "#ffd9a0" });
@@ -297,6 +357,19 @@ describe("checkManifestCatalogSync", () => {
     const bad = { living: { layers: [{ item: "floor", by: "product", assets: {} }] } };
     const r = checkManifestCatalogSync({ catalog, manifest: bad, space: "living", itemOrder: order });
     expect(r.missingItems).toEqual(["ceiling", "sash"]);
+  });
+
+  it("textures 키도 조건값과 교차검증한다", () => {
+    const cat = { spaces: [{ code: "living", items: [
+      { category: "door", name: "문", options: [{ code: "casing_basic", products: [] }],
+        lineConditions: { doorColor: { values: ["white", "wood"] } } },
+    ] }] };
+    const man = { living: { layers: [
+      { item: "door", by: "condition", conditionKey: "doorColor", kind: "tint",
+        tints: { white: "#fff" }, textures: { wood: { src: "x" }, BADCOLOR: { src: "y" } } },
+    ] } };
+    const r = checkManifestCatalogSync({ catalog: cat, manifest: man, space: "living", itemOrder: ["door"] });
+    expect(r.unknownKeys).toEqual([{ item: "door", key: "BADCOLOR" }]);
   });
 
   it("colorTempTint 잘못된 색온도 키 → unknownKeys", () => {

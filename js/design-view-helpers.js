@@ -11,12 +11,14 @@ export const CONDITION_LABELS = {
   downlightCount: "다운라이트 개수", lineRunCount: "마그네틱 구간", tvWidth: "TV 가로(mm)",
   tvHeight: "TV 세로(mm)", tvDepth: "TV 두께(mm)",
   frameColor: "프레임 색", division: "창 분할", glass: "유리",
+  doorColor: "문 색",
 };
 export const CONDITION_VALUE_LABELS = {
   keep: "유지", partial: "부분철거", rebuild: "전체철거후재시공",
   warm: "전구색", neutral: "주백색", on: "켜기", off: "끄기",
   white: "화이트", gray: "그레이", black: "블랙", wood: "우드",
   full: "통창", divided: "분할(격자)", pair: "복층", lowe: "로이", triple: "삼중",
+  warmwhite: "웜화이트", charcoal: "차콜",
 };
 
 export const isConfirmed = (selection) => selection?.status === "confirmed";
@@ -57,6 +59,7 @@ export function conditionControls(item, line) {
       key, label: CONDITION_LABELS[key] ?? key, kind,
       values: spec.values ?? null, klass: spec.class,
       current: current === undefined ? null : current,
+      swatches: spec.swatches ?? null,
     });
   }
   return out;

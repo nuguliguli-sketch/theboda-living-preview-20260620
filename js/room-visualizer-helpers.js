@@ -155,7 +155,7 @@ export function layerToStyle(layer) {
     const repeat = layer.backgroundRepeat ?? "no-repeat";
     return `${base}background-image:url(${layer.src});background-position:${position};background-size:${size};background-repeat:${repeat};${opacity}${blend}${mask}`;
   }
-  if (layer.kind === "tint") return `${base}background:${layer.color};mix-blend-mode:multiply;opacity:.55;${mask}`;
+  if (layer.kind === "tint") return `${base}background:${layer.color};mix-blend-mode:multiply;opacity:${layer.opacity ?? 0.55};${mask}`;
   if (layer.kind === "globalTone") return `${base}background:${layer.color};mix-blend-mode:multiply;opacity:.4;pointer-events:none;`;
   return base;
 }
@@ -218,9 +218,25 @@ export function buildCompositePlan({ catalog, selection, manifest, space = "livi
     const markPending = () => pending.push({ item: layer.item, label, choiceLabel: choiceLabel(catalog, space, layer, line) });
 
     if (kind === "tint") {
-      const color = key != null ? (layer.tints ?? {})[key] : null;
-      if (color) layers.push({ item: layer.item, z: layer.z ?? 0, kind: "tint", zone: layer.zone ?? null, color, label });
-      else markPending();
+      const resolved = resolveLayerAsset({ zone: layer.zone, variants: layer.variants }, { selection, space });
+      const zone = resolved?.zone ?? layer.zone ?? null;
+      // 같은 키가 textures·tints에 다 있으면 텍스처(우드 등) 우선. src 없는 텍스처는 깨진 url 대신 tint/pending로.
+      const texture = key != null ? (layer.textures ?? {})[key] : null;
+      if (texture?.src) {
+        // 텍스처(우드)는 multiply 풀강도로 둠(opacity 미설정=1.0). 단색 틴트의 layer.opacity(0.9 등)와
+        // 의도적으로 다름 — 결무늬가 0.9에 씻기지 않게. "정규화" 금지.
+        layers.push({
+          item: layer.item, z: layer.z ?? 0, kind: "image", zone,
+          src: texture.src, mixBlendMode: "multiply",
+          backgroundSize: texture.backgroundSize ?? "cover",
+          backgroundRepeat: texture.backgroundRepeat ?? "repeat",
+          label,
+        });
+      } else {
+        const color = key != null ? (layer.tints ?? {})[key] : null;
+        if (color) layers.push({ item: layer.item, z: layer.z ?? 0, kind: "tint", zone, color, opacity: layer.opacity, label });
+        else markPending();
+      }
     } else if (kind === "globalTone") {
       const ct = (line?.conditions ?? {}).colorTemp;
       const color = ct != null ? (layer.colorTempTint ?? {})[ct] : null;
@@ -260,7 +276,7 @@ export function checkManifestCatalogSync({ catalog, manifest, space = "living", 
     const validOptions = new Set((item.options ?? []).map((o) => o.code));
     const cond = layer.conditionKey ? (item.lineConditions ?? {})[layer.conditionKey] : null;
     const validCondVals = new Set(cond?.values ?? []);
-    for (const k of [...Object.keys(layer.assets ?? {}), ...Object.keys(layer.tints ?? {})]) {
+    for (const k of [...Object.keys(layer.assets ?? {}), ...Object.keys(layer.tints ?? {}), ...Object.keys(layer.textures ?? {})]) {
       let ok = false;
       if (layer.by === "product") ok = validProducts.has(k);
       else if (layer.by === "option") ok = validOptions.has(k);
