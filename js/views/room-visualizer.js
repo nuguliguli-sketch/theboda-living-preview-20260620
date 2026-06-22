@@ -3,7 +3,7 @@
 import { el } from "../ui.js";
 import { buildCompositePlan, layerToStyle } from "../room-visualizer-helpers.js";
 
-const VISUAL_ASSET_VERSION = "0622-wall-expansion-v4";
+const VISUAL_ASSET_VERSION = "0622-door-casing-fix-v5";
 const visualAssetUrl = (url) => {
   if (!url?.startsWith("rooms/living/presets/")
     && !url?.startsWith("rooms/living/floor/")

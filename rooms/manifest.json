@@ -1410,7 +1410,13 @@
         "assets": {
           "flat": {
             "src": "rooms/living/presets/render_ceiling_flat_no-light_source-user_floor-gujung-a.png",
-            "zone": "rooms/living/zones/ceiling-flat-20260620.png"
+            "zone": "rooms/living/zones/ceiling-flat-20260620.png",
+            "variants": {
+              "door": {
+                "casing_full": { "zone": "rooms/living/zones/ceiling-flat-nodoor-20260622.png" },
+                "step": { "zone": "rooms/living/zones/ceiling-flat-nodoor-20260622.png" }
+              }
+            }
           },
           "dropped": {
             "src": "rooms/living/presets/render_ceiling_dropped_no-light_source-user_floor-gujung-a.png",
@@ -1418,7 +1424,13 @@
           },
           "coffered": {
             "src": "rooms/living/presets/render_ceiling_coffered_no-light_source-user_floor-gujung-a.png",
-            "zone": "rooms/living/zones/ceiling-coffered-20260620.png"
+            "zone": "rooms/living/zones/ceiling-coffered-20260620.png",
+            "variants": {
+              "door": {
+                "casing_full": { "zone": "rooms/living/zones/ceiling-coffered-nodoor-20260622.png" },
+                "step": { "zone": "rooms/living/zones/ceiling-coffered-nodoor-20260622.png" }
+              }
+            }
           }
         }
       },

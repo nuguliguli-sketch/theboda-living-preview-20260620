@@ -282,6 +282,47 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     expect(slim.pending).toEqual([]);
   });
 
+  it("풀하이트 문(인방·스텝)은 평천장·우물서 천장 마스크의 문선 기둥을 빼 casing 상단이 안 가린다", () => {
+    // 인방(casing_full)·스텝은 문선이 천장까지 풀하이트인데, 평천장·우물 천장 마스크(기본문 기준)가
+    // 그 윗부분을 덮어 casing 상단이 잘려 보였다. 풀하이트 문일 때 천장 zone에서 문 기둥(door-render-area)을
+    // 뺀 마스크를 써서 단내림처럼 casing이 끝까지 살아나게 한다. 일반 문(기본·슬림)·단내림은 무회귀.
+    const nodoor = {
+      flat: "rooms/living/zones/ceiling-flat-nodoor-20260622.png",
+      coffered: "rooms/living/zones/ceiling-coffered-nodoor-20260622.png",
+    };
+    const orig = {
+      flat: "rooms/living/zones/ceiling-flat-20260620.png",
+      coffered: "rooms/living/zones/ceiling-coffered-20260620.png",
+      dropped: "rooms/living/zones/ceiling-dropped-20260620.png",
+    };
+    const ceilingZone = (ceiling, door) => {
+      const plan = buildCompositePlan({
+        catalog,
+        selection: selection({ ceiling, door, floorProduct: "p_floor_lam_value" }),
+        manifest,
+        space: "living",
+        activeCategory: "door",
+      });
+      return plan.layers.find((layer) => layer.item === "ceiling").zone;
+    };
+    // 풀하이트 문 → 평천장·우물은 nodoor 마스크
+    for (const ceiling of ["flat", "coffered"]) {
+      for (const door of ["casing_full", "step"]) {
+        expect(ceilingZone(ceiling, door)).toBe(nodoor[ceiling]);
+      }
+    }
+    // 일반 문(기본·슬림) → 평천장·우물 모두 원래 마스크 그대로(무회귀)
+    for (const ceiling of ["flat", "coffered"]) {
+      for (const door of ["casing_basic", "slim"]) {
+        expect(ceilingZone(ceiling, door)).toBe(orig[ceiling]);
+      }
+    }
+    // 단내림은 어떤 문이든 원래 마스크(이미 문선을 안 덮음)
+    for (const door of ["casing_basic", "casing_full", "slim", "step"]) {
+      expect(ceilingZone("dropped", door)).toBe(orig.dropped);
+    }
+  });
+
   it("留덇렇?ㅽ떛 議곕챸? 泥쒖옣 ??낅퀎 ?꾩슜 ?뚮뜑瑜??ъ슜?쒕떎", () => {
     const living = catalog.spaces.find((space) => space.code === "living");
     const lighting = living.items.find((item) => item.category === "lighting");
