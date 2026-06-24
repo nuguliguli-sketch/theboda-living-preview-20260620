@@ -720,7 +720,7 @@
             "z": 35,
             "backgroundRepeat": "repeat",
             "backgroundPosition": "center",
-            "backgroundSize": "110px 110px",
+            "backgroundSize": "170px 170px",
             "opacity": 1,
             "mixBlendMode": "multiply",
             "variants": {
