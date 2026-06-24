@@ -46,6 +46,8 @@ async function render() {
   const route = parseHash(location.hash);
   const loggedIn = useMock || auth.isLoggedIn();
   logoutBtn.classList.toggle("hidden-view", !loggedIn);
+  // 페이지 전환마다 상단바 컨텍스트 슬롯 초기화(뷰가 필요 시 다시 채움)
+  document.getElementById("topbar-nav")?.replaceChildren();
 
   if (!loggedIn && route.name !== "login") { go("#/login"); return; }
   if (loggedIn && route.name === "login") { go("#/customers"); return; }

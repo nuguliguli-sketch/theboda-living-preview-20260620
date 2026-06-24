@@ -22,6 +22,9 @@ header.topbar { background: var(--brand-deep); color: #fff; }
   padding: 10px 24px;
 }
 header.topbar .brand { font-weight: 700; font-size: 15px; letter-spacing: -.2px; }
+.topbar-left { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.topbar-nav .ghost { color: #cfe0f2; padding: 4px 0; }
+.topbar-nav .ghost:hover { color: #fff; }
 main { max-width: var(--container); margin: 0 auto; padding: 20px 24px 48px; }
 h1, h2 { color: var(--text-primary); }
 .card {

@@ -60,6 +60,7 @@ export function buildConceptCarousel(concepts, { current = null, onSelect, onCan
   wrap.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") go(-1); if (e.key === "ArrowRight") go(1); });
 
   render();
-  setTimeout(() => wrap.focus(), 0);
+  // preventScroll: 포커스가 페이지를 아래로 스크롤시켜 상단바를 가리는 것 방지
+  setTimeout(() => wrap.focus({ preventScroll: true }), 0);
   return wrap;
 }

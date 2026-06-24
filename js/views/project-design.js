@@ -169,13 +169,11 @@ export async function renderProjectDesign(root, ctx) {
     else drawSelection();
   }
 
-  const view = el("div", {}, [
-    el("div", { class: "row", style: "margin-bottom:12px" }, [
-      el("button", { class: "ghost", style: "padding-left:0", text: "← 프로젝트 상세", onClick: () => ctx.go(`#/projects/${projectId}`) }),
-    ]),
-    body,
-    errBox,
-  ]);
+  const view = el("div", {}, [body, errBox]);
   mount(root, view);
+  // 백링크는 상단바(더보다 운영·로그아웃 줄)의 슬롯으로.
+  document.getElementById("topbar-nav")?.replaceChildren(
+    el("button", { class: "ghost", text: "← 프로젝트 상세", onClick: () => ctx.go(`#/projects/${projectId}`) }),
+  );
   await guard(load);
 }
