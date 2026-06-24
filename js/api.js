@@ -48,6 +48,7 @@ export function makeApi({ baseUrl, tenantId, getToken, fetchImpl = fetch }) {
     chooseProduct: (projectId, b) => request(`/projects/${projectId}/design/product`, { method: "POST", body: b }).then((r) => r.selection),
     setCondition: (projectId, b) => request(`/projects/${projectId}/design/condition`, { method: "POST", body: b }).then((r) => r.selection),
     confirmDesign: (projectId, b) => request(`/projects/${projectId}/design/confirm`, { method: "POST", body: b }),
+    applyConcept: (projectId, b) => request(`/projects/${projectId}/design/concept/apply`, { method: "POST", body: b }),
   };
 }
 

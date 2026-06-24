@@ -3,6 +3,7 @@
 import { el } from "../ui.js";
 import {
   PRODUCT_CATEGORIES, groupsForCategory, conditionControls, optionOf, CONDITION_VALUE_LABELS,
+  sortProductsRecommendedFirst,
 } from "../design-view-helpers.js";
 
 function pricingBadge(opt) {
@@ -28,7 +29,7 @@ function optionChip(opt, selected, onPick) {
 }
 
 // 제품 카드 1개
-function productCard(p, selected, onPick) {
+function productCard(p, selected, onPick, recommended = false) {
   const disabled = p.enabled === false;
   const previewStyle = p.image
     ? `background:url(${p.image}) center/cover no-repeat`
@@ -39,6 +40,7 @@ function productCard(p, selected, onPick) {
     "aria-disabled": disabled ? "true" : null,
     onClick: disabled ? undefined : onPick,
   }, [
+    recommended ? el("span", { class: "badge approved", text: "추천", style: "margin-bottom:6px" }) : null,
     el("div", { style: `width:100%;height:64px;border-radius:8px;${previewStyle};margin-bottom:8px` }),
     el("div", { text: p.name, style: "font-size:13px;font-weight:600" }),
     el("div", { class: "muted", text: [p.brand, p.code, p.size, p.색, p.마감].filter(Boolean).join(" · ") }),
@@ -46,7 +48,7 @@ function productCard(p, selected, onPick) {
 }
 
 // 조건 컨트롤 1개(segment/toggle/number)
-function conditionControl(ctrl, onSet) {
+function conditionControl(ctrl, onSet, recommendedValue = null) {
   if (ctrl.kind === "toggle") {
     const btn = el("button", {
       class: ctrl.current ? "primary" : "ghost",
@@ -66,17 +68,21 @@ function conditionControl(ctrl, onSet) {
       const dot = ctrl.swatches?.[v]
         ? el("span", { style: `display:inline-block;width:12px;height:12px;border-radius:9999px;border:1px solid #00000022;background:${ctrl.swatches[v]};margin-right:6px;vertical-align:middle` })
         : null;
+      const isRec = recommendedValue != null && v === recommendedValue;
       return el("button", {
         class: ctrl.current === v ? "primary" : "ghost",
-        style: dot ? "display:inline-flex;align-items:center" : null,
+        style: (dot ? "display:inline-flex;align-items:center;" : "") + (isRec ? "box-shadow:0 0 0 2px #4a90d9" : ""),
+        title: isRec ? "컨셉 추천" : null,
         onClick: () => onSet(ctrl.key, v),
-      }, [dot, CONDITION_VALUE_LABELS[v] ?? v]);
+      }, [dot, (CONDITION_VALUE_LABELS[v] ?? v) + (isRec ? " ⭐" : "")]);
     }));
   const tag = ctrl.klass === "designOnly" ? "디자인 전용·가격 불변" : ctrl.klass === "costCondition" ? "가격 영향(현장 확정)" : "견적 수량";
   return el("div", {}, [el("label", { text: `${ctrl.label} (${tag})` }), seg]);
 }
 
-// item: 카탈로그 DTO 항목 / line: 현재 줄 / cbs: {confirmed, onOption, onProduct, onCondition}
+// item: 카탈로그 DTO 항목 / line: 현재 줄 /
+// cbs: {confirmed, onOption, onProduct, onCondition, recommendedProductId?, recommendedDoorColor?}
+//   recommendedProductId/recommendedDoorColor = 컨셉 추천(있으면 정렬 앞+배지/문색 ⭐, 없으면 기존 거동)
 export function buildItemPanel(item, line, cbs) {
   const isProduct = PRODUCT_CATEGORIES.includes(item.category);
   const children = [el("h2", { text: item.name })];
@@ -88,12 +94,18 @@ export function buildItemPanel(item, line, cbs) {
       children.push(el("div", { class: "row", style: "flex-wrap:wrap;gap:8px" },
         g.options.map((o) => optionChip(o, o.code === line.optionCode, cbs.confirmed ? undefined : () => cbs.onOption(o.code)))));
     }
-    // 현재 옵션 제품 카드
+    // 현재 옵션 제품 카드(컨셉 추천을 맨 앞 + 배지)
     const opt = optionOf(item, line.optionCode);
     if (opt && opt.products.length) {
+      const recId = cbs.recommendedProductId ?? null;
+      const products = sortProductsRecommendedFirst(opt.products, recId);
       children.push(el("div", { class: "muted", text: "제품", style: "margin-top:16px;font-weight:600" }));
       children.push(el("div", { class: "row", style: "flex-wrap:wrap;gap:12px" },
-        opt.products.map((p) => productCard(p, p.id === line.productId, cbs.confirmed ? undefined : () => cbs.onProduct(p.id)))));
+        products.map((p) => productCard(
+          p, p.id === line.productId,
+          cbs.confirmed ? undefined : () => cbs.onProduct(p.id),
+          recId != null && p.id === recId,
+        ))));
     }
   } else {
     // 옵션 칩(제품 없음)
@@ -105,7 +117,11 @@ export function buildItemPanel(item, line, cbs) {
   const ctrls = conditionControls(item, line);
   if (ctrls.length) {
     children.push(el("div", { class: "muted", text: "조건", style: "margin-top:16px;font-weight:600" }));
-    for (const c of ctrls) children.push(conditionControl(c, cbs.confirmed ? () => {} : cbs.onCondition));
+    for (const c of ctrls) children.push(conditionControl(
+      c,
+      cbs.confirmed ? () => {} : cbs.onCondition,
+      c.key === "doorColor" ? (cbs.recommendedDoorColor ?? null) : null,
+    ));
   }
 
   return el("div", { class: "card" }, children);

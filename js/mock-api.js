@@ -8,8 +8,8 @@ function defaultConditions(item, optionCode) {
   for (const [k, spec] of Object.entries(item.lineConditions ?? {})) if (appliesTo(spec, optionCode)) out[k] = spec.default;
   return out;
 }
-function firstOption(item) { return item.options[0]; }
-function firstProductId(opt) { return (opt.products ?? []).find((p) => p.enabled !== false)?.id ?? opt.products[0]?.id ?? null; }
+function baselineOption(item) { return item.options.find((o) => o.code === item.baselineOptionCode) ?? item.options[0]; }
+function baselineProductIdOf(opt) { return opt.products?.length ? (opt.baselineProductId ?? null) : null; }
 
 export function makeMockApi() {
   let catalog = null;
@@ -26,8 +26,8 @@ export function makeMockApi() {
 
   function draft() {
     const lines = LIVING_ORDER.map((cat) => {
-      const item = itemOf(cat); const opt = firstOption(item);
-      return { space: "living", category: cat, optionCode: opt.code, productId: firstProductId(opt), conditions: defaultConditions(item, opt.code) };
+      const item = itemOf(cat); const opt = baselineOption(item);
+      return { space: "living", category: cat, optionCode: opt.code, productId: baselineProductIdOf(opt), conditions: defaultConditions(item, opt.code) };
     });
     return { status: "draft", version: 0, lines };
   }
@@ -40,11 +40,43 @@ export function makeMockApi() {
       requireSel();
       const item = itemOf(category); const opt = item.options.find((o) => o.code === optionCode);
       const line = lineOf(category);
-      line.optionCode = optionCode; line.productId = firstProductId(opt); line.conditions = defaultConditions(item, optionCode);
+      line.optionCode = optionCode; line.productId = baselineProductIdOf(opt); line.conditions = defaultConditions(item, optionCode);
       return sel;
     },
     chooseProduct: async (_p, { category, productId }) => { requireSel(); lineOf(category).productId = productId; return sel; },
     setCondition: async (_p, { category, ...attrs }) => { requireSel(); Object.assign(lineOf(category).conditions, attrs); return sel; },
     confirmDesign: async () => { requireSel(); sel = { ...sel, status: "confirmed", version: 1 }; return { selection: sel, spec: { lines: sel.lines } }; },
+    applyConcept: async (_p, { conceptId }) => {
+      requireSel();
+      const concept = (catalog.concepts ?? []).find((c) => c.id === conceptId);
+      if (!concept) throw Object.assign(new Error("존재하지 않는 컨셉입니다."), { code: "concept_not_found" });
+      // 사전 검증(백엔드 미러, 단순화: 옵션/제품만 — 조건 유효성/appliesTo는 백엔드가 권위)
+      for (const t of concept.targets) {
+        const item = itemOf(t.category);
+        if (t.setOption) {
+          const opt = item.options.find((o) => o.code === t.setOption);
+          if (!opt || opt.enabled === false) throw Object.assign(new Error("옵션 불가"), { code: "option_not_allowed" });
+          if (t.setProduct && !(opt.products ?? []).some((p) => p.id === t.setProduct && p.enabled !== false))
+            throw Object.assign(new Error("제품 불가"), { code: "product_not_allowed" });
+        }
+      }
+      const snap = new Map(sel.lines.map((l) => [l.category, { optionCode: l.optionCode, productId: l.productId, conditions: JSON.stringify(l.conditions ?? {}) }]));
+      // 적용(옵션→제품; 문은 setOption 없음=케이싱 보존, doorColor만)
+      for (const t of concept.targets) {
+        const line = lineOf(t.category); if (!line) continue;
+        const item = itemOf(t.category);
+        if (t.setOption && t.setOption !== line.optionCode) { line.optionCode = t.setOption; line.conditions = defaultConditions(item, t.setOption); }
+        if (t.setProduct) line.productId = t.setProduct;
+        if (t.setCondition) line.conditions = { ...line.conditions, [t.setCondition.key]: t.setCondition.value };
+      }
+      sel.previousConceptId = sel.conceptId ?? null;
+      sel.conceptId = conceptId;
+      // diff: 변경된 라인만, 백엔드 applyConcept과 동일 shape
+      const applied = sel.lines.filter((l) => {
+        const b = snap.get(l.category);
+        return b && (b.optionCode !== l.optionCode || b.productId !== l.productId || b.conditions !== JSON.stringify(l.conditions ?? {}));
+      }).map((l) => ({ space: l.space, category: l.category, optionCode: l.optionCode, productId: l.productId, conditions: { ...l.conditions } }));
+      return { selection: sel, applied };
+    },
   };
 }

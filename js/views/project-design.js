@@ -1,10 +1,16 @@
 // operator-web/js/views/project-design.js
 // 레이아웃 A: 항목 스텝퍼 + 메인 패널 + 사이드 요약. 상태·액션 오케스트레이션.
 import { el, mount, errorText } from "../ui.js";
-import { visibleItemOrder, itemOf, lineOf, isConfirmed } from "../design-view-helpers.js";
+import {
+  visibleItemOrder, itemOf, lineOf, isConfirmed,
+  needsConceptGate, activeConceptId, conceptById,
+  buildJourneySteps, recommendedProductId, recommendedDoorColor,
+} from "../design-view-helpers.js";
 import { buildItemPanel } from "./design-item-panel.js";
 import { buildSummary } from "./design-summary.js";
 import { buildRoomVisualizer } from "./room-visualizer.js";
+import { buildJourneyNav } from "./design-journey-nav.js";
+import { buildConceptCarousel } from "./concept-carousel.js";
 
 const ENABLED_CATEGORIES = new Set(["floor", "wall", "ceiling_paper", "ceiling", "door"]);
 
@@ -25,6 +31,7 @@ export async function renderProjectDesign(root, ctx) {
   let sel = null;
   let current = "ceiling"; // 현재 편집 항목
   let manifest = null;
+  let reopening = false; // 무드보드 단계 재오픈(전환) 플래그
 
   async function load() {
     const [cat, cur, man] = await Promise.all([
@@ -48,14 +55,52 @@ export async function renderProjectDesign(root, ctx) {
     }
   }
 
-  function drawStart() {
-    mount(body, el("div", { class: "card" }, [
-      el("h2", { text: "디자인 선택 시작" }),
-      el("p", { class: "muted", text: "거실 7항목(바닥·벽지·천장·문·샷시·TV벽·조명)을 기본값으로 시작합니다." }),
-      el("div", { class: "row", style: "margin-top:12px" }, [
-        el("button", { class: "primary", text: "선택 시작", onClick: () => guard(async () => { sel = await api.startDesign(projectId); draw(); }) }),
-      ]),
-    ]));
+  function drawCarousel() {
+    mount(body, buildConceptCarousel(catalog.concepts ?? [], {
+      current: activeConceptId(sel),
+      showCancel: reopening,
+      onCancel: () => { reopening = false; draw(); },
+      onSelect: (conceptId) => onPickConcept(conceptId),
+    }));
+  }
+
+  // 전환 확인 오버레이(Promise<boolean>). document.body에 부착.
+  function confirmSwitch(concept) {
+    return new Promise((resolve) => {
+      const close = (val) => { overlay.remove(); resolve(val); };
+      const card = el("div", { style: "background:#fff;border-radius:16px;max-width:440px;width:100%;box-shadow:0 8px 30px rgba(10,22,40,.18);overflow:hidden" }, [
+        concept.boardImage ? el("img", { src: concept.boardImage, style: "width:100%;display:block" }) : null,
+        el("div", { style: "padding:18px" }, [
+          el("div", { text: `분위기를 '${concept.name}'으로 바꿀까요?`, style: "font-size:17px;font-weight:800;color:#0a1628" }),
+          el("div", { class: "muted", style: "margin-top:8px;line-height:1.6", text: "바닥·벽·문 색이 새 컨셉 기준으로 다시 적용됩니다. 천장·문 모양·조명 등 구조는 유지돼요. 직접 바꾼 색은 사라집니다." }),
+          el("div", { class: "row", style: "justify-content:flex-end;gap:8px;margin-top:18px" }, [
+            el("button", { class: "ghost", text: "취소", onClick: () => close(false) }),
+            el("button", { class: "primary", text: `${concept.name}으로 변경`, onClick: () => close(true) }),
+          ]),
+        ]),
+      ]);
+      const overlay = el("div", {
+        style: "position:fixed;inset:0;background:rgba(10,22,40,.55);display:flex;align-items:center;justify-content:center;padding:24px;z-index:1000",
+        onClick: (e) => { if (e.target === overlay) close(false); },
+      }, [card]);
+      document.body.appendChild(overlay);
+    });
+  }
+
+  async function onPickConcept(conceptId) {
+    const currentId = activeConceptId(sel);
+    if (currentId === conceptId) { reopening = false; draw(); return; } // 같은 컨셉 = 닫기만
+    if (currentId) {
+      const ok = await confirmSwitch(conceptById(catalog, conceptId));
+      if (!ok) return;
+    }
+    await guard(async () => {
+      if (!sel) await api.startDesign(projectId);
+      const res = await api.applyConcept(projectId, { conceptId });
+      sel = res.selection;
+      reopening = false;
+      draw();
+    });
   }
 
   function stepper() {
@@ -88,6 +133,8 @@ export async function renderProjectDesign(root, ctx) {
       onOption: (optionCode) => guard(async () => { sel = await api.chooseOption(projectId, { space: "living", category: current, optionCode }); draw(); }),
       onProduct: (productId) => guard(async () => { sel = await api.chooseProduct(projectId, { space: "living", category: current, productId }); draw(); }),
       onCondition: (key, value) => guard(async () => { sel = await api.setCondition(projectId, { space: "living", category: current, [key]: value }); draw(); }),
+      recommendedProductId: recommendedProductId(catalog, sel, current),
+      recommendedDoorColor: current === "door" ? recommendedDoorColor(catalog, sel) : null,
     });
 
     const summary = buildSummary(catalog, sel, {
@@ -101,7 +148,11 @@ export async function renderProjectDesign(root, ctx) {
       ? buildRoomVisualizer({ catalog, selection: sel, manifest, space: "living", activeCategory: current })
       : null;
 
+    const journeyNav = buildJourneyNav(buildJourneySteps(catalog, sel, "living"), {
+      onStep: (key) => { if (key === "moodboard" && !isConfirmed(sel)) { reopening = true; draw(); } },
+    });
     mount(body, el("div", {}, [
+      journeyNav,
       stepper(),
       ...(visual ? [el("div", { style: "margin-bottom:16px" }, [visual])] : []),
       el("div", { class: "row", style: "align-items:flex-start;gap:16px;flex-wrap:wrap" }, [
@@ -112,7 +163,8 @@ export async function renderProjectDesign(root, ctx) {
   }
 
   function draw() {
-    if (!sel) drawStart(); else drawSelection();
+    if (needsConceptGate(sel) || reopening) drawCarousel();
+    else drawSelection();
   }
 
   const view = el("div", {}, [

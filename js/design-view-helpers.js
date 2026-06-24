@@ -81,6 +81,62 @@ export function wallIsPremium(catalog, selection) {
   return line?.optionCode === "premium";
 }
 
+// ── 컨셉/진입(톤&무드 Phase 2) ──
+export const conceptById = (catalog, id) =>
+  (catalog?.concepts ?? []).find((c) => c.id === id) ?? null;
+export const activeConceptId = (selection) => selection?.conceptId ?? null;
+export const activeConcept = (catalog, selection) =>
+  conceptById(catalog, activeConceptId(selection));
+// 컨셉 선택 전(=무드보드 게이트로 보내야 함)
+export const needsConceptGate = (selection) => !selection || !selection.conceptId;
+
+// ── 디자인 여정 단계바 ──
+export const JOURNEY_STEPS = [
+  { key: "moodboard", label: "무드보드", active: true },
+  { key: "living", label: "거실", active: true },
+  { key: "bathroom", label: "화장실", active: false },
+  { key: "kitchen", label: "주방", active: false },
+  { key: "etc", label: "기타", active: false },
+  { key: "quote", label: "견적·랜더링", active: false },
+];
+
+// current = 현재 보고 있는 단계 key("moodboard" | "living")
+export function buildJourneySteps(catalog, selection, current = "living") {
+  const concept = activeConcept(catalog, selection);
+  const confirmed = isConfirmed(selection);
+  return JOURNEY_STEPS.map((s, i) => {
+    let status;
+    if (!s.active) status = "locked";
+    else if (s.key === current) status = "current"; // 현재 보고 있는 단계 우선
+    else if (s.key === "moodboard") status = concept ? "done" : "current";
+    else status = "available";
+    return {
+      key: s.key, label: s.label, active: s.active, num: i + 1, status,
+      concept: s.key === "moodboard" ? concept : null,
+      locked: confirmed && s.key === "moodboard",
+    };
+  });
+}
+
+// ── 컨셉 추천(정렬·강조) ──
+export function recommendedProductId(catalog, selection, category) {
+  const concept = activeConcept(catalog, selection);
+  const t = (concept?.targets ?? []).find((x) => x.category === category);
+  return t?.setProduct ?? null;
+}
+export function recommendedDoorColor(catalog, selection) {
+  const concept = activeConcept(catalog, selection);
+  const t = (concept?.targets ?? []).find((x) => x.category === "door" && x.setCondition?.key === "doorColor");
+  return t?.setCondition?.value ?? null;
+}
+export function sortProductsRecommendedFirst(products, recommendedId) {
+  const list = (products ?? []).slice();
+  if (!recommendedId) return list;
+  const rec = list.filter((p) => p.id === recommendedId);
+  const rest = list.filter((p) => p.id !== recommendedId);
+  return [...rec, ...rest];
+}
+
 export function visibleItemOrder(catalog, selection) {
   return wallIsPremium(catalog, selection)
     ? LIVING_ITEM_ORDER.filter((c) => c !== "ceiling_paper")
