@@ -8,18 +8,21 @@
   --bg-section: #f4f7fb;
   --ok: #27ae60; --warn: #e67e22; --danger: #c0392b;
   --radius-btn: 8px; --radius-card: 14px; --radius-badge: 9999px;
+  --container: 1240px;
 }
 * { box-sizing: border-box; }
 body {
   margin: 0; font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", sans-serif;
   color: var(--text-primary); background: var(--bg-page); line-height: 1.5;
 }
-header.topbar {
+header.topbar { background: var(--brand-deep); color: #fff; }
+.topbar-inner {
+  max-width: var(--container); margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 24px; background: var(--brand-deep); color: #fff;
+  padding: 10px 24px;
 }
-header.topbar .brand { font-weight: 700; }
-main { max-width: 880px; margin: 0 auto; padding: 24px; }
+header.topbar .brand { font-weight: 700; font-size: 15px; letter-spacing: -.2px; }
+main { max-width: var(--container); margin: 0 auto; padding: 20px 24px 48px; }
 h1, h2 { color: var(--text-primary); }
 .card {
   background: var(--bg-page); border: 1px solid #e3ebf5; border-radius: var(--radius-card);

@@ -151,15 +151,17 @@ export async function renderProjectDesign(root, ctx) {
     const journeyNav = buildJourneyNav(buildJourneySteps(catalog, sel, "living"), {
       onStep: (key) => { if (key === "moodboard" && !isConfirmed(sel)) { reopening = true; draw(); } },
     });
-    mount(body, el("div", {}, [
-      journeyNav,
-      stepper(),
-      ...(visual ? [el("div", { style: "margin-bottom:16px" }, [visual])] : []),
-      el("div", { class: "row", style: "align-items:flex-start;gap:16px;flex-wrap:wrap" }, [
-        el("div", { style: "flex:1 1 460px;min-width:300px" }, [panel]),
-        el("div", { style: "flex:0 1 320px;min-width:280px" }, [summary]),
-      ]),
-    ]));
+    // 좌(거실 이미지=sticky, 스크롤해도 유지)·우(항목 옵션+요약). 비주얼 없으면 옵션만.
+    const cols = visual
+      ? el("div", { class: "row", style: "align-items:flex-start;gap:20px;flex-wrap:wrap" }, [
+          el("div", { style: "flex:3 1 520px;min-width:320px;position:sticky;top:16px;align-self:flex-start" }, [visual]),
+          el("div", { style: "flex:2 1 360px;min-width:320px" }, [panel, summary]),
+        ])
+      : el("div", { class: "row", style: "align-items:flex-start;gap:20px;flex-wrap:wrap" }, [
+          el("div", { style: "flex:1 1 460px;min-width:320px" }, [panel]),
+          el("div", { style: "flex:0 1 340px;min-width:300px" }, [summary]),
+        ]);
+    mount(body, el("div", {}, [journeyNav, stepper(), cols]));
   }
 
   function draw() {
@@ -168,9 +170,8 @@ export async function renderProjectDesign(root, ctx) {
   }
 
   const view = el("div", {}, [
-    el("div", { class: "row", style: "justify-content:space-between" }, [
-      el("h1", { text: "디자인 선택 — 거실" }),
-      el("button", { class: "ghost", text: "← 프로젝트 상세", onClick: () => ctx.go(`#/projects/${projectId}`) }),
+    el("div", { class: "row", style: "margin-bottom:12px" }, [
+      el("button", { class: "ghost", style: "padding-left:0", text: "← 프로젝트 상세", onClick: () => ctx.go(`#/projects/${projectId}`) }),
     ]),
     body,
     errBox,
