@@ -2,7 +2,7 @@
 // 순수 파생 헬퍼(DOM 없음, node 테스트 가능). 카탈로그 DTO + selection → 화면 데이터.
 
 export const LIVING_ITEM_ORDER = ["floor", "wall", "ceiling_paper", "ceiling", "door", "sash", "tv_wall", "lighting"];
-export const LIVING_VISUAL_ITEMS = ["floor", "wall", "ceiling", "door", "sash", "tv_wall", "lighting"]; // manifest 레이어 필수 항목(천정지 제외)
+export const LIVING_VISUAL_ITEMS = ["floor", "wall", "ceiling", "door", "sash", "lighting"]; // manifest 레이어 필수 항목(천정지·아트월 제외)
 export const PRODUCT_CATEGORIES = ["floor", "wall", "door"]; // 제품 카드가 있는 항목
 
 export const CONDITION_LABELS = {
@@ -143,6 +143,18 @@ export function visibleItemOrder(catalog, selection) {
     : LIVING_ITEM_ORDER;
 }
 
+// ── 아트월 갤러리(톤&무드 Phase 3) ──
+export const isGalleryItem = (item) => item?.selectionStyle === "gallery";
+export const artwallImage = (option, conceptId) => (conceptId ? option?.conceptImages?.[conceptId] : null) ?? null;
+export const isRecommendedArtwall = (option, conceptId) =>
+  (option?.recommendedConcepts ?? []).includes(conceptId);
+export function galleryPriceLabel(option) {
+  if (option?.consultOnly) return "맞춤 상담";
+  if (option?.pricingStatus === "zero") return "추가 비용 없음";
+  if (option?.pricingStatus === "pending") return "가격 협의";
+  return option?.priceLabel || "";
+}
+
 export function summaryRows(catalog, selection) {
   const rows = [];
   for (const category of visibleItemOrder(catalog, selection)) {
@@ -154,7 +166,7 @@ export function summaryRows(catalog, selection) {
     rows.push({
       category, categoryName: item?.name ?? category,
       optionName: opt?.name ?? line.optionCode,
-      priceLabel: opt?.priceLabel ?? "",
+      priceLabel: isGalleryItem(item) ? galleryPriceLabel(opt) : (opt?.priceLabel ?? ""),
       pricingStatus: opt?.pricingStatus ?? null,
       productName: prod?.name ?? null,
       conditionSummary: summarizeConditions(line.conditions),

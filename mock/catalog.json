@@ -1,5 +1,5 @@
 {
-  "catalogVersion": "2026-06-24-living-catalog-sync",
+  "catalogVersion": "2026-06-25-artwall-gallery",
   "concepts": [
     {
       "id": "warm_natural",
@@ -82,6 +82,7 @@
           "name": "바닥",
           "quantityDriver": "floor_area",
           "baselineOptionCode": "laminate_value",
+          "selectionStyle": null,
           "options": [
             {
               "code": "laminate_value",
@@ -92,6 +93,9 @@
               "baselineProductId": "p_floor_lam_value",
               "pricingStatus": "known",
               "priceLabel": "90,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_lam_value",
@@ -111,6 +115,9 @@
               "baselineProductId": "p_floor_dongwha_natural",
               "pricingStatus": "known",
               "priceLabel": "105,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_oak_natural",
@@ -153,6 +160,9 @@
               "baselineProductId": "p_floor_lx_royal_walnut",
               "pricingStatus": "known",
               "priceLabel": "120,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_lam_prem",
@@ -192,6 +202,9 @@
               "baselineProductId": "p_floor_sheet_value",
               "pricingStatus": "known",
               "priceLabel": "40,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_sheet_value",
@@ -211,6 +224,9 @@
               "baselineProductId": "p_floor_sheet_std",
               "pricingStatus": "known",
               "priceLabel": "65,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_sheet_std",
@@ -230,6 +246,9 @@
               "baselineProductId": "p_floor_sheet_prem",
               "pricingStatus": "known",
               "priceLabel": "94,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_sheet_prem",
@@ -249,6 +268,9 @@
               "baselineProductId": "p_floor_wood_std",
               "pricingStatus": "known",
               "priceLabel": "150,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_wood_std",
@@ -268,6 +290,9 @@
               "baselineProductId": "p_floor_wood_prem",
               "pricingStatus": "known",
               "priceLabel": "200,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_wood_prem",
@@ -287,6 +312,9 @@
               "baselineProductId": "p_floor_spc",
               "pricingStatus": "known",
               "priceLabel": "110,000원/평",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_floor_spc",
@@ -305,6 +333,7 @@
           "name": "벽지",
           "quantityDriver": "wall_area",
           "baselineOptionCode": "hapji",
+          "selectionStyle": null,
           "options": [
             {
               "code": "hapji",
@@ -315,6 +344,9 @@
               "baselineProductId": "p_wall_hapji_white",
               "pricingStatus": "known",
               "priceLabel": "16,000원/롤",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_wall_hapji_white",
@@ -334,6 +366,9 @@
               "baselineProductId": "p_wall_silk_warmgrey",
               "pricingStatus": "known",
               "priceLabel": "55,000원/롤",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_wall_silk_warmgrey",
@@ -434,6 +469,9 @@
               "baselineProductId": "p_wall_diamang_creamwhite",
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_wall_diamang_creamwhite",
@@ -463,6 +501,7 @@
           "name": "천정지",
           "quantityDriver": "ceiling_area",
           "baselineOptionCode": "white",
+          "selectionStyle": null,
           "options": [
             {
               "code": "white",
@@ -473,6 +512,9 @@
               "baselineProductId": "p_ceil_white",
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": [
                 {
                   "id": "p_ceil_white",
@@ -491,6 +533,7 @@
           "name": "천장",
           "quantityDriver": "ceiling_area",
           "baselineOptionCode": "flat",
+          "selectionStyle": null,
           "options": [
             {
               "code": "flat",
@@ -501,6 +544,9 @@
               "baselineProductId": null,
               "pricingStatus": "zero",
               "priceLabel": "추가 비용 없음",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -512,6 +558,9 @@
               "baselineProductId": null,
               "pricingStatus": "known",
               "priceLabel": "기본 단가 적용",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -523,6 +572,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             }
           ],
@@ -552,6 +604,7 @@
           "name": "문",
           "quantityDriver": "door_count",
           "baselineOptionCode": "casing_basic",
+          "selectionStyle": null,
           "options": [
             {
               "code": "casing_basic",
@@ -562,6 +615,9 @@
               "baselineProductId": null,
               "pricingStatus": "known",
               "priceLabel": "기본 단가 적용",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -573,6 +629,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -584,6 +643,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -595,6 +657,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -606,6 +671,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             }
           ],
@@ -637,6 +705,7 @@
           "name": "샷시(창호)",
           "quantityDriver": "window_area",
           "baselineOptionCode": "alu",
+          "selectionStyle": null,
           "options": [
             {
               "code": "alu",
@@ -647,6 +716,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -658,6 +730,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -669,6 +744,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -680,6 +758,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             }
           ],
@@ -718,73 +799,211 @@
           "name": "TV벽(아트월)",
           "quantityDriver": "unit",
           "baselineOptionCode": "none",
+          "selectionStyle": "gallery",
           "options": [
             {
               "code": "none",
-              "group": "TV벽",
-              "grade": "일반",
-              "name": "일반(시공 안 함)",
+              "group": "아트월",
+              "grade": "선택 안함",
+              "name": "선택 안함(벽지 그대로)",
               "enabled": true,
               "baselineProductId": null,
               "pricingStatus": "zero",
               "priceLabel": "추가 비용 없음",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
-              "code": "semi",
-              "group": "TV벽",
+              "code": "recess",
+              "group": "아트월",
               "grade": "반매립",
-              "name": "반매립(브라켓·배선 매립)",
-              "enabled": true,
-              "baselineProductId": null,
-              "pricingStatus": "known",
-              "priceLabel": "기본 단가 적용",
-              "products": []
-            },
-            {
-              "code": "full",
-              "group": "TV벽",
-              "grade": "매립",
-              "name": "매립(완전 매립)",
+              "name": "01 TV 반매립 아트월",
               "enabled": true,
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/recess_warm.jpg",
+                "soft_modern": "rooms/living/artwall/recess_soft.jpg",
+                "urban_mood": "rooms/living/artwall/recess_urban.jpg"
+              },
+              "recommendedConcepts": [
+                "warm_natural",
+                "soft_modern",
+                "urban_mood"
+              ],
+              "products": []
+            },
+            {
+              "code": "tile",
+              "group": "아트월",
+              "grade": "타일",
+              "name": "02 대형타일/포세린 아트월",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/tile_warm.jpg",
+                "soft_modern": "rooms/living/artwall/tile_soft.jpg",
+                "urban_mood": "rooms/living/artwall/tile_urban.jpg"
+              },
+              "recommendedConcepts": [
+                "urban_mood"
+              ],
+              "products": []
+            },
+            {
+              "code": "silk",
+              "group": "아트월",
+              "grade": "실크마감",
+              "name": "03 실크벽지 마감 + TV 밀착/반매립",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/silk_warm.jpg",
+                "soft_modern": "rooms/living/artwall/silk_soft.jpg",
+                "urban_mood": "rooms/living/artwall/silk_urban.jpg"
+              },
+              "recommendedConcepts": [
+                "soft_modern"
+              ],
+              "products": []
+            },
+            {
+              "code": "panel",
+              "group": "아트월",
+              "grade": "패널",
+              "name": "04 월판넬/무광 패널형 TV월",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/panel_warm.jpg",
+                "soft_modern": "rooms/living/artwall/panel_soft.jpg",
+                "urban_mood": "rooms/living/artwall/panel_urban.jpg"
+              },
+              "recommendedConcepts": [
+                "soft_modern",
+                "urban_mood"
+              ],
+              "products": []
+            },
+            {
+              "code": "tambour",
+              "group": "아트월",
+              "grade": "탬바보드",
+              "name": "05 탬바보드 TV월/리브 패널",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/tambour_warm.jpg",
+                "soft_modern": "rooms/living/artwall/tambour_soft.jpg",
+                "urban_mood": "rooms/living/artwall/tambour_urban.jpg"
+              },
+              "recommendedConcepts": [
+                "warm_natural",
+                "soft_modern"
+              ],
+              "products": []
+            },
+            {
+              "code": "indirect",
+              "group": "아트월",
+              "grade": "간접조명",
+              "name": "06 간접조명형 아트월",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/indirect_warm.jpg",
+                "soft_modern": "rooms/living/artwall/indirect_soft.jpg",
+                "urban_mood": "rooms/living/artwall/indirect_urban.jpg"
+              },
+              "recommendedConcepts": [
+                "urban_mood"
+              ],
+              "products": []
+            },
+            {
+              "code": "storage",
+              "group": "아트월",
+              "grade": "수납형",
+              "name": "07 수납형 TV월/월플렉스",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "pending",
+              "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/storage_warm.jpg",
+                "soft_modern": "rooms/living/artwall/storage_soft.jpg",
+                "urban_mood": "rooms/living/artwall/storage_urban.jpg"
+              },
+              "recommendedConcepts": [
+                "warm_natural"
+              ],
+              "products": []
+            },
+            {
+              "code": "arch",
+              "group": "아트월",
+              "grade": "맞춤",
+              "name": "08 라운드/반달/아치형 벽체",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "advisory",
+              "priceLabel": "맞춤 상담",
+              "consultOnly": true,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/arch_warm.jpg",
+                "soft_modern": "rooms/living/artwall/arch_soft.jpg",
+                "urban_mood": "rooms/living/artwall/arch_urban.jpg"
+              },
+              "recommendedConcepts": [],
+              "products": []
+            },
+            {
+              "code": "fullrecess",
+              "group": "아트월",
+              "grade": "프리미엄",
+              "name": "09 완전 매립형 TV 벽체",
+              "enabled": true,
+              "baselineProductId": null,
+              "pricingStatus": "advisory",
+              "priceLabel": "맞춤 상담",
+              "consultOnly": true,
+              "conceptImages": {
+                "warm_natural": "rooms/living/artwall/fullrecess_warm.jpg",
+                "soft_modern": "rooms/living/artwall/fullrecess_soft.jpg",
+                "urban_mood": "rooms/living/artwall/fullrecess_urban.jpg"
+              },
+              "recommendedConcepts": [],
               "products": []
             }
           ],
-          "lineConditions": {
-            "tvWidth": {
-              "class": "quantity",
-              "default": null,
-              "type": "number",
-              "appliesTo": [
-                "full"
-              ]
-            },
-            "tvHeight": {
-              "class": "quantity",
-              "default": null,
-              "type": "number",
-              "appliesTo": [
-                "full"
-              ]
-            },
-            "tvDepth": {
-              "class": "quantity",
-              "default": null,
-              "type": "number",
-              "appliesTo": [
-                "full"
-              ]
-            }
-          }
+          "lineConditions": {}
         },
         {
           "category": "lighting",
           "name": "조명",
           "quantityDriver": "ceiling_area",
           "baselineOptionCode": "main",
+          "selectionStyle": null,
           "options": [
             {
               "code": "main",
@@ -795,6 +1014,9 @@
               "baselineProductId": null,
               "pricingStatus": "known",
               "priceLabel": "기본 단가 적용",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -806,6 +1028,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -817,6 +1042,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             },
             {
@@ -828,6 +1056,9 @@
               "baselineProductId": null,
               "pricingStatus": "pending",
               "priceLabel": "산출 예정",
+              "consultOnly": false,
+              "conceptImages": null,
+              "recommendedConcepts": [],
               "products": []
             }
           ],

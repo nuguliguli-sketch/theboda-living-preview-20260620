@@ -88,7 +88,7 @@ describe("render presets", () => {
       { space: "living", category: "floor", optionCode: "laminate_std", productId: "p_floor_oak_natural", conditions: {} },
       { space: "living", category: "ceiling", optionCode: "dropped", productId: null, conditions: {} },
       { space: "living", category: "lighting", optionCode: "downlight", productId: null, conditions: {} },
-      { space: "living", category: "door", optionCode: "casing_full", productId: "d_white_matt", conditions: {} },
+      { space: "living", category: "door", optionCode: "casing_full", productId: null, conditions: {} },
     ]);
     const preset = resolveRenderPreset({ selection, room: renderPresetManifest.living });
     expect(preset.key).toBe("dropped_down_inbang_floor-gujung-a");
@@ -108,7 +108,7 @@ describe("render presets", () => {
       { space: "living", category: "floor", optionCode: "laminate_std", productId: "p_floor_oak_grey", conditions: {} },
       { space: "living", category: "ceiling", optionCode: "flat", productId: null, conditions: {} },
       { space: "living", category: "lighting", optionCode: "main", productId: null, conditions: {} },
-      { space: "living", category: "door", optionCode: "casing_basic", productId: "d_white_matt", conditions: {} },
+      { space: "living", category: "door", optionCode: "casing_basic", productId: null, conditions: {} },
     ]);
     const plan = buildCompositePlan({ catalog, selection, manifest: renderPresetManifest, space: "living" });
     expect(plan.base).toBe("rooms/living/presets/render_flat_main-led_basic-casing_floor-dongwha-b.png");
@@ -120,7 +120,7 @@ describe("render presets", () => {
       { space: "living", category: "floor", optionCode: "laminate_std", productId: "p_floor_oak_natural", conditions: {} },
       { space: "living", category: "ceiling", optionCode: "coffered", productId: null, conditions: {} },
       { space: "living", category: "lighting", optionCode: "main", productId: null, conditions: {} },
-      { space: "living", category: "door", optionCode: "casing_basic", productId: "d_white_matt", conditions: {} },
+      { space: "living", category: "door", optionCode: "casing_basic", productId: null, conditions: {} },
     ]);
     const plan = buildCompositePlan({ catalog, selection, manifest: renderPresetManifest, space: "living" });
     expect(plan.preset).toBe("coffered_nearest_floor-gujung-a");
@@ -132,7 +132,7 @@ describe("render presets", () => {
       { space: "living", category: "floor", optionCode: "laminate_std", productId: "p_floor_oak_natural", conditions: {} },
       { space: "living", category: "ceiling", optionCode: "coffered", productId: null, conditions: {} },
       { space: "living", category: "lighting", optionCode: "downlight", productId: null, conditions: {} },
-      { space: "living", category: "door", optionCode: "casing_full", productId: "d_white_matt", conditions: {} },
+      { space: "living", category: "door", optionCode: "casing_full", productId: null, conditions: {} },
     ]);
     const plan = buildCompositePlan({
       catalog,
@@ -173,7 +173,7 @@ describe("render presets", () => {
     const selection = sel([
       { space: "living", category: "ceiling", optionCode: "coffered", productId: null, conditions: {} },
       { space: "living", category: "lighting", optionCode: "line", productId: null, conditions: {} },
-      { space: "living", category: "door", optionCode: "hidden", productId: "d_white_matt", conditions: {} },
+      { space: "living", category: "door", optionCode: "hidden", productId: null, conditions: {} },
     ]);
     const plan = buildCompositePlan({ catalog, selection, manifest: renderPresetManifest, space: "living" });
     expect(plan.base).toBe("rooms/living/presets/render_flat_main-led_basic-casing_floor-gujung-a.png");

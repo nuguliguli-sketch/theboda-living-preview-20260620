@@ -42,7 +42,7 @@ const selection = ({ ceiling = "flat", lighting = "main", door = "casing_basic",
     { space: "living", category: "wall", optionCode: wallOption, productId: wallProduct, conditions: {} },
     { space: "living", category: "ceiling", optionCode: ceiling, productId: null, conditions: {} },
     { space: "living", category: "lighting", optionCode: lighting, productId: null, conditions: {} },
-    { space: "living", category: "door", optionCode: door, productId: "d_white_matt", conditions: { doorColor: "white" } },
+    { space: "living", category: "door", optionCode: door, productId: null, conditions: { doorColor: "white" } },
   ],
 });
 
@@ -62,14 +62,14 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     const living = catalog.spaces.find((space) => space.code === "living");
     const lighting = living.items.find((item) => item.category === "lighting");
     expect(lighting.options.map((option) => option.code)).toContain("downlight_fan");
-    expect(lighting.lineConditions.mainLight).toBeUndefined();
+    expect(lighting.lineConditions.mainLight.appliesTo).toContain("downlight_fan");
     expect(lighting.lineConditions.downlightCount.appliesTo).toContain("downlight_fan");
   });
 
   it("?꾩뼱 ?좏깮吏???쇰컲, ?몃갑, ?щ┝, ?ㅽ뀦 4醫낆씠怨??대?吏 以鍮꾩쨷 ?쒖떆瑜??댁젣?쒕떎", () => {
     const living = catalog.spaces.find((space) => space.code === "living");
     const door = living.items.find((item) => item.category === "door");
-    expect(door.options.map((option) => option.code)).toEqual(["casing_basic", "casing_full", "slim", "step"]);
+    expect(door.options.map((option) => option.code)).toEqual(["casing_basic", "casing_full", "slim", "step", "hidden"]);
     expect(door.options.find((option) => option.code === "slim").visualStatus).toBeUndefined();
     expect(door.options.find((option) => option.code === "step").visualStatus).toBeUndefined();
   });
@@ -343,7 +343,7 @@ describe("rooms/manifest.json ??mock/catalog.json", () => {
     const living = catalog.spaces.find((space) => space.code === "living");
     const lighting = living.items.find((item) => item.category === "lighting");
     const magnetic = lighting.options.find((option) => option.code === "line");
-    expect(magnetic.name).toBe("마그네틱 조명");
+    expect(magnetic.name).toBe("라인·마그네틱(프리미엄)");
     expect(magnetic.visualStatus).toBeUndefined();
 
     for (const ceiling of ["flat", "dropped", "coffered"]) {

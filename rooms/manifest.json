@@ -1435,13 +1435,6 @@
         }
       },
       {
-        "item": "tv_wall",
-        "by": "option",
-        "z": 40,
-        "zone": "rooms/living/zones/tv_wall.png",
-        "assets": {}
-      },
-      {
         "item": "door",
         "by": "option",
         "z": 5,

@@ -12,7 +12,7 @@ import { buildRoomVisualizer } from "./room-visualizer.js";
 import { buildJourneyNav } from "./design-journey-nav.js";
 import { buildConceptCarousel } from "./concept-carousel.js";
 
-const ENABLED_CATEGORIES = new Set(["floor", "wall", "ceiling_paper", "ceiling", "door"]);
+const ENABLED_CATEGORIES = new Set(["floor", "wall", "ceiling_paper", "ceiling", "door", "tv_wall"]);
 
 async function loadManifest() {
   try {
@@ -135,6 +135,7 @@ export async function renderProjectDesign(root, ctx) {
       onCondition: (key, value) => guard(async () => { sel = await api.setCondition(projectId, { space: "living", category: current, [key]: value }); draw(); }),
       recommendedProductId: recommendedProductId(catalog, sel, current),
       recommendedDoorColor: current === "door" ? recommendedDoorColor(catalog, sel) : null,
+      conceptId: activeConceptId(sel),
     });
 
     const summary = buildSummary(catalog, sel, {
@@ -148,17 +149,25 @@ export async function renderProjectDesign(root, ctx) {
       ? buildRoomVisualizer({ catalog, selection: sel, manifest, space: "living", activeCategory: current })
       : null;
 
+    const isArtwallActive = itemOf(catalog, "living", current)?.selectionStyle === "gallery";
+    const previewBanner = isArtwallActive
+      ? el("div", {
+          style: "background:#f4f9ff;border:1px solid #cfe0f5;border-left:4px solid #4a90d9;border-radius:10px;padding:10px 12px;margin-bottom:10px;color:#1a3669;font-size:13px;line-height:1.45",
+          text: "🛈 아트월은 이 실시간 미리보기에는 표시되지 않습니다 — 선택하신 디자인은 최종 렌더에 반영됩니다.",
+        })
+      : null;
+
     const journeyNav = buildJourneyNav(buildJourneySteps(catalog, sel, "living"), {
       onStep: (key) => { if (key === "moodboard" && !isConfirmed(sel)) { reopening = true; draw(); } },
     });
     // 좌(거실 이미지=sticky, 스크롤해도 유지)·우(항목 옵션+요약). 비주얼 없으면 옵션만.
     const cols = visual
       ? el("div", { class: "row", style: "align-items:flex-start;gap:20px;flex-wrap:wrap" }, [
-          el("div", { style: "flex:3 1 520px;min-width:320px;position:sticky;top:16px;align-self:flex-start" }, [visual]),
+          el("div", { style: "flex:3 1 520px;min-width:320px;position:sticky;top:16px;align-self:flex-start" }, [previewBanner, visual]),
           el("div", { style: "flex:2 1 360px;min-width:320px" }, [panel, summary]),
         ])
       : el("div", { class: "row", style: "align-items:flex-start;gap:20px;flex-wrap:wrap" }, [
-          el("div", { style: "flex:1 1 460px;min-width:320px" }, [panel]),
+          el("div", { style: "flex:1 1 460px;min-width:320px" }, [previewBanner, panel]),
           el("div", { style: "flex:0 1 340px;min-width:300px" }, [summary]),
         ]);
     mount(body, el("div", {}, [journeyNav, stepper(), cols]));

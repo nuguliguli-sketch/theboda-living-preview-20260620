@@ -4,6 +4,7 @@ import { el } from "../ui.js";
 import {
   PRODUCT_CATEGORIES, groupsForCategory, conditionControls, optionOf, CONDITION_VALUE_LABELS,
   sortProductsRecommendedFirst,
+  isGalleryItem, artwallImage, isRecommendedArtwall, galleryPriceLabel,
 } from "../design-view-helpers.js";
 
 function pricingBadge(opt) {
@@ -80,10 +81,48 @@ function conditionControl(ctrl, onSet, recommendedValue = null) {
   return el("div", {}, [el("label", { text: `${ctrl.label} (${tag})` }), seg]);
 }
 
+// 아트월 갤러리 카드 1개 (이미지 주인공, 1열 큰 카드)
+function galleryCard(opt, selected, imageUrl, recommended, priceText, onPick) {
+  const disabled = !onPick; // 확정 상태 등 클릭 불가
+  const cursor = disabled ? "default" : "pointer";
+  const preview = imageUrl
+    ? el("div", { style: `position:relative;width:100%;aspect-ratio:7/4;background:url(${imageUrl}) center/cover no-repeat` },
+        [recommended ? el("span", { class: "badge approved", style: "position:absolute;top:10px;left:10px", text: "⭐ 추천" }) : null])
+    : el("div", { style: "position:relative;width:100%;aspect-ratio:7/4;background:#e7f0fb;display:flex;align-items:center;justify-content:center" },
+        [el("span", { class: "muted", text: opt.name })]);
+  return el("div", {
+    class: `card${disabled ? " option-disabled" : ""}`,
+    "aria-disabled": disabled ? "true" : null,
+    style: `width:100%;margin:0 0 12px;padding:0;overflow:hidden;cursor:${cursor};border-color:${selected ? "#4a90d9" : "#e3ebf5"};border-width:${selected ? "2px" : "1px"}`,
+    onClick: onPick,
+  }, [
+    preview,
+    el("div", { style: "padding:10px 13px;display:flex;justify-content:space-between;align-items:center" }, [
+      el("b", { text: opt.name }),
+      el("span", { class: selected ? "" : "muted", text: selected ? `✓ ${priceText}` : priceText }),
+    ]),
+  ]);
+}
+
+// 아트월 갤러리 패널(1열 큰 이미지 카드 목록)
+function buildGalleryPanel(item, line, cbs) {
+  const conceptId = cbs.conceptId ?? null;
+  const cards = item.options.map((opt) => galleryCard(
+    opt,
+    opt.code === line.optionCode,
+    artwallImage(opt, conceptId),
+    isRecommendedArtwall(opt, conceptId),
+    galleryPriceLabel(opt),
+    cbs.confirmed ? undefined : () => cbs.onOption(opt.code),
+  ));
+  return el("div", { class: "card" }, [el("h2", { text: item.name }), ...cards]);
+}
+
 // item: 카탈로그 DTO 항목 / line: 현재 줄 /
-// cbs: {confirmed, onOption, onProduct, onCondition, recommendedProductId?, recommendedDoorColor?}
+// cbs: {confirmed, onOption, onProduct, onCondition, recommendedProductId?, recommendedDoorColor?, conceptId?}
 //   recommendedProductId/recommendedDoorColor = 컨셉 추천(있으면 정렬 앞+배지/문색 ⭐, 없으면 기존 거동)
 export function buildItemPanel(item, line, cbs) {
+  if (isGalleryItem(item)) return buildGalleryPanel(item, line, cbs);
   const isProduct = PRODUCT_CATEGORIES.includes(item.category);
   const children = [el("h2", { text: item.name })];
 
